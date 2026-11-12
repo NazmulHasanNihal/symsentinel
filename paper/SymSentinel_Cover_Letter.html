@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Submission Cover Letter | Quantum</title>
+  <style>
+    @page { size: A4; margin: 2.2cm 2.2cm 2.2cm 2.2cm; }
+    body {
+      font-family: "TeX Gyre Termes", "Times New Roman", Times, serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #111;
+      text-align: justify;
+    }
+    .letterhead {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+    .inst-title {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .inst-sub {
+      font-size: 10pt;
+      color: #475569;
+    }
+    .meta-table {
+      width: 100%;
+      margin-bottom: 24px;
+      font-size: 10.5pt;
+    }
+    .meta-table td { padding: 3px 0; vertical-align: top; }
+    .meta-label { width: 90px; font-weight: bold; color: #334155; }
+    h2.subject {
+      font-size: 11.5pt;
+      font-weight: 700;
+      margin: 18px 0;
+      color: #0f172a;
+    }
+    p { margin-bottom: 12px; }
+    ul { margin: 10px 0 16px 20px; }
+    li { margin-bottom: 6px; }
+    .sig-block {
+      margin-top: 32px;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="letterhead">
+    <div class="inst-title">National University, Bangladesh</div>
+    <div class="inst-sub">Department of Computer Science and Engineering | College of Technology</div>
+    <div class="inst-sub">Gazipur-1704, Bangladesh &bull; Email: cse@nu.ac.bd</div>
+  </div>
+
+  <table class="meta-table">
+    <tr>
+      <td class="meta-label">TO:</td>
+      <td>The Editorial Board, <em>Quantum</em> &mdash; The Open Journal for Quantum Science<br><code>editorial-office@quantum-journal.org</code></td>
+    </tr>
+    <tr>
+      <td class="meta-label">FROM:</td>
+      <td><strong>Md. Nazmul</strong> (Corresponding Author)<br>&bull; Role: Lead Researcher, Conceptualization, Methodology &amp; Software Architecture<br>&bull; Email: <code>nazmulhas36@gmail.com</code> | ORCID: <a href="https://orcid.org/0009-0001-6115-7023">0009-0001-6115-7023</a><br>Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh</td>
+    </tr>
+    <tr>
+      <td class="meta-label">CO-AUTHORS:</td>
+      <td>
+        <strong>Musrat Jahan Gungun</strong> (Co-Author) &bull; <em>Data Curation, Baseline Benchmarking, Validation &amp; Statistical Testing</em><br>
+        &bull; Email: <code>gungunjahan84@gmail.com</code> | ORCID: <a href="https://orcid.org/0009-0006-4249-9198">0009-0006-4249-9198</a><br><br>
+        <strong>Maheli Ahmed</strong> (Co-Author &amp; Faculty Supervisor) &bull; <em>Faculty Supervision, Resources, Formal Analysis &amp; Model Governance</em><br>
+        &bull; Email: <code>maheli.ahmed.cse.cot@gmail.com</code> | ORCID: <a href="https://orcid.org/0000-0002-5183-7498">0000-0002-5183-7498</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="meta-label">DATE:</td>
+      <td>November 12, 2026</td>
+    </tr>
+  </table>
+
+  <h2 class="subject">SUBJECT: Submission of Regular Research Article: &ldquo;Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift&rdquo;</h2>
+
+  <p>Dear Editors of <em>Quantum</em>,</p>
+
+  <p>We are pleased to submit our original research manuscript entitled <strong>&ldquo;Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift&rdquo;</strong> for consideration as a Regular Research Article in <em>Quantum</em>.</p>
+
+  <p>Physical hardware drift—manifesting as telegraphic two-level system (TLS) defect frequency jumps, stochastic local-oscillator phase drift, and energy relaxation decays—presents a major bottleneck for quantum processing units (QPUs) deployed on commercial clouds. Current industry practice relies on rigid, periodic recalibration schedules (typically every 8 to 24 hours), causing up to 80% budget wastage on stable days and silent algorithmic failure during mid-cycle defect jumps. Meanwhile, contemporary drift benchmarking proposals (such as spectator qubits or randomized benchmarking interspersal) require dedicated quantum circuits, consuming 25% to 50% extra quantum shots.</p>
+
+  <p>In this manuscript, we present <strong>SymSentinel</strong>, a framework that completely eliminates the shot overhead of quantum hardware monitoring while providing rigorous mathematical guarantees:</p>
+
+  <ul>
+    <li><strong>Zero Extra Quantum Shot Cost (&ldquo;Free Sentinels&rdquo;):</strong> We prove that for any symmetric quantum learner ($[U(\theta), S] = 0$), computational basis shots gathered for task observable evaluation inherently carry hardware drift syndromes. These syndromes are evaluated classically in microseconds at <strong>zero extra quantum shot cost</strong>.</li>
+    <li><strong>Filtration-Predictable Betting E-Detectors (Theorem 1):</strong> We construct a sequential test martingale with strictly predictable betting fractions ($\lambda_t \in \mathcal{F}_{t-1}$) guaranteeing non-asymptotic Average Run Length control ($\mathrm{ARL} \ge \gamma$) via Ville's maximal inequality. Over 1,000 independent null runs, our detector achieved <strong>zero false alarms</strong>.</li>
+    <li><strong>The Blind-Spot Visibility Limit Theorem (Theorem 2):</strong> We prove that a single symmetry sentinel $S$ is strictly blind to noise channels whose Kraus operators commute with $S$ ($[E_k, S] = 0$), even when task prediction risk degrades severely. We resolve this via a greedy set-cover algorithm over a sentinel library that restores <strong>100% full Pauli fault visibility</strong> with just $M=2$ sentinels.</li>
+    <li><strong>Anytime-Valid Conformal Risk Certification (Theorem 3):</strong> Combining an empirical-Bernstein confidence sequence on validation data with an isotonic link function, we construct an upper risk certificate $U_t^{\mathrm{cert}}$ guaranteeing time-uniform coverage ($\le 0.05$ miscoverage) across non-stationary drift regimes ($D_1$ coherent OU, $D_2$ relaxation, and $D_3$ TLS jumps).</li>
+    <li><strong>Three-Tier Recalibration Hierarchy &amp; 96.6% Cloud Cost Reduction (Theorem 4):</strong> Rather than triggering monolithic $100 full QPU resets upon every alarm, SymSentinel deploys a 3-tier cascade: software Virtual-$Z$ phase updates ($0, 0 shots) $\to$ localized 2-qubit subsystem retuning ($15, 1.5k shots) $\to$ full QPU reset. In comprehensive benchmarking across 6 baselines, SymSentinel achieves <strong>96.6% cost reduction compared to periodic recalibration and 82.9% reduction compared to an omniscient oracle reset</strong>.</li>
+  </ul>
+
+  <p>Given <em>Quantum</em>'s leadership in quantum error mitigation, quantum machine learning, and reproducible open science, we believe our work will be of immediate interest to your readership.</p>
+
+  <p><strong>Suggested Handling Editors:</strong><br>
+  &bull; <strong>Dr. Johannes Jakob Meyer</strong> (Freie Universit&auml;t Berlin) &mdash; Symmetries in quantum algorithms.<br>
+  &bull; <strong>Dr. Robin Blume-Kohout</strong> (Sandia National Laboratories) &mdash; Quantum hardware drift and characterization.<br>
+  &bull; <strong>Dr. Earl Campbell</strong> (Riverlane) &mdash; Quantum error mitigation and systems engineering.</p>
+
+  <p><strong>Suggested Independent Reviewers:</strong><br>
+  1. <strong>Prof. Aaditya Ramdas</strong> (Carnegie Mellon University, <code>aramdas@cmu.edu</code>)<br>
+  2. <strong>Dr. Timothy Proctor</strong> (Sandia National Laboratories, <code>tjproct@sandia.gov</code>)<br>
+  3. <strong>Dr. B&aacute;lint Koczor</strong> (University of Oxford, <code>balint.koczor@materials.ox.ac.uk</code>)<br>
+  4. <strong>Dr. Zo&euml; Holmes</strong> (EPFL, <code>zoe.holmes@epfl.ch</code>)</p>
+
+  <div class="sig-block">
+    <p>Sincerely,</p>
+    <p><strong>Md. Nazmul</strong><br>
+    Lead Researcher &amp; Corresponding Author<br>
+    Department of Computer Science and Engineering, College of Technology,<br>
+    National University, Gazipur, Bangladesh<br>
+    ORCID: 0009-0001-6115-7023 &bull; Email: <code>nazmulhas36@gmail.com</code><br>
+    <em>(On behalf of Musrat Jahan Gungun and Maheli Ahmed)</em></p>
+  </div>
+
+</body>
+</html>

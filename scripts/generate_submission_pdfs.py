@@ -19,12 +19,12 @@ FIG_DIR = os.path.join(BASE_DIR, "figures")
 
 
 def render_html_to_pdf(html_content: str, output_pdf_path: str, wait_ms: int = 5000):
-    """Helper that writes temporary HTML and renders to PDF using Headless Chrome."""
-    temp_html_path = output_pdf_path.replace(".pdf", "_temp.html")
-    with open(temp_html_path, "w", encoding="utf-8") as f:
+    """Helper that writes HTML and renders to PDF using Headless Chrome."""
+    html_path = output_pdf_path.replace(".pdf", ".html")
+    with open(html_path, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    html_url = "file:///" + os.path.abspath(temp_html_path).replace("\\", "/")
+    html_url = "file:///" + os.path.abspath(html_path).replace("\\", "/")
     abs_out_pdf = os.path.abspath(output_pdf_path)
 
     cmd = [
@@ -41,12 +41,9 @@ def render_html_to_pdf(html_content: str, output_pdf_path: str, wait_ms: int = 5
 
     subprocess.run(cmd, check=True)
 
-    # Clean up temp file
-    if os.path.exists(temp_html_path):
-        os.remove(temp_html_path)
-
     size_kb = os.path.getsize(abs_out_pdf) / 1024
-    print(f" -> Generated: {abs_out_pdf} ({size_kb:.1f} KB)")
+    html_kb = os.path.getsize(html_path) / 1024
+    print(f" -> Generated: {abs_out_pdf} ({size_kb:.1f} KB) & {html_path} ({html_kb:.1f} KB)")
 
 
 # ==============================================================================
