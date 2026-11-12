@@ -2,7 +2,7 @@
 
 **Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift**
 
-**Authors:** Md Nazmul, Musrat Jahan Gungun, Mahile Ahmed  
+**Authors:** Md. Nazmul, Musrat Jahan Gungun, Maheli Ahmed  
 *Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
@@ -181,17 +181,33 @@ The complete, submission-ready scientific package formatted for *Quantum* is ava
 
 ## 📜 Citation & Authors
 
-**Authors:** Md Nazmul, Musrat Jahan Gungun, Mahile Ahmed
+### Author Records & Contributions
 
-- **Md Nazmul** (Lead & Corresponding Author, ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023), `nazmul@nu.ac.bd`)
-- **Musrat Jahan Gungun** (Researcher, ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198))
-- **Mahile Ahmed** (Supervisor, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498))  
+1. **Md. Nazmul** (Corresponding Author)
+   - **Role:** Lead Researcher, Conceptualization, Methodology & Software Architecture
+   - **Email:** `nazmulhas36@gmail.com`
+   - **ORCID Identifier:** 0009-0001-6115-7023
+   - **Direct Record URL:** [https://orcid.org/0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)
+
+2. **Musrat Jahan Gungun** (Co-Author)
+   - **Role:** Data Curation, Baseline Benchmarking, Validation & Statistical Testing
+   - **Email:** `gungunjahan84@gmail.com`
+   - **ORCID Identifier:** 0009-0006-4249-9198
+   - **Direct Record URL:** [https://orcid.org/0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)
+
+3. **Maheli Ahmed** (Co-Author & Faculty Supervisor)
+   - **Role:** Faculty Supervision, Resources, Formal Analysis & Model Governance
+   - **Email:** `maheli.ahmed.cse.cot@gmail.com`
+   - **ORCID Identifier:** 0000-0002-5183-7498
+   - **Direct Record URL:** [https://orcid.org/0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)
+
+**Institutional Affiliation:**  
 *Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*
 
 ```bibtex
 @article{nazmul2026symsentinel,
   title={Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift},
-  author={Nazmul, Md and Gungun, Musrat Jahan and Ahmed, Mahile},
+  author={Nazmul, Md. and Gungun, Musrat Jahan and Ahmed, Maheli},
   journal={Quantum (Submitted)},
   year={2026}
 }

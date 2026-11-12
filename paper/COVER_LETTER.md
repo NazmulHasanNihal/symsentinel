@@ -6,13 +6,22 @@ The Editorial Board
 `editorial-office@quantum-journal.org`
 
 **From:**  
-**Md. Nazmul** (Corresponding Author & Project Lead)  
-Department of Computer Science and Engineering, College of Technology,  
-National University, Gazipur, Bangladesh  
-ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023) | Email: `nazmul@nu.ac.bd`  
-On behalf of co-authors:  
-- **Musrat Jahan Gungun** (ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198))  
-- **Maheli Ahmed** (Supervisor, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498))  
+1. **Md. Nazmul** (Corresponding Author)  
+   • Role: Lead Researcher, Conceptualization, Methodology & Software Architecture  
+   • Email: `nazmulhas36@gmail.com`  
+   • ORCID Identifier: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023) (Direct: https://orcid.org/0009-0001-6115-7023)  
+
+2. **Musrat Jahan Gungun** (Co-Author)  
+   • Role: Data Curation, Baseline Benchmarking, Validation & Statistical Testing  
+   • Email: `gungunjahan84@gmail.com`  
+   • ORCID Identifier: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198) (Direct: https://orcid.org/0009-0006-4249-9198)  
+
+3. **Maheli Ahmed** (Co-Author & Faculty Supervisor)  
+   • Role: Faculty Supervision, Resources, Formal Analysis & Model Governance  
+   • Email: `maheli.ahmed.cse.cot@gmail.com`  
+   • ORCID Identifier: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498) (Direct: https://orcid.org/0000-0002-5183-7498)  
+
+**Affiliation:**  
 Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh
 
 **Date:** November 12, 2026  
@@ -65,9 +74,9 @@ Thank you very much for your time and consideration of our work.
 Sincerely,
 
 **Md. Nazmul**  
-Lead & Corresponding Author, Project Leader  
+Lead Researcher & Corresponding Author  
 Department of Computer Science and Engineering, College of Technology,  
 National University, Gazipur, Bangladesh  
-ORCID: 0009-0001-6115-7023 | Email: `nazmul@nu.ac.bd`  
+ORCID: 0009-0001-6115-7023 | Email: `nazmulhas36@gmail.com`  
 *(On behalf of Musrat Jahan Gungun and Maheli Ahmed)*
 

@@ -305,7 +305,7 @@ def build_manuscript_pdf():
     <sup>1</sup> Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh
   </div>
   <div class="author-contact">
-    * Corresponding Author and Project Leader: nazmul@nu.ac.bd
+    * Corresponding Author &amp; Lead Researcher: nazmulhas36@gmail.com
   </div>
 
   <div class="abstract-box">
@@ -570,9 +570,9 @@ def build_manuscript_pdf():
 
   <h2>Author Contributions (CRediT Statement)</h2>
   <p class="no-indent">
-    <strong>Md. Nazmul:</strong> Conceptualization, Methodology, Software, Formal Analysis, Investigation, Writing &ndash; Original Draft, Project Administration.<br>
-    <strong>Musrat Jahan Gungun:</strong> Methodology, Validation, Software, Data Curation, Formal Analysis, Writing &ndash; Review &amp; Editing.<br>
-    <strong>Maheli Ahmed:</strong> Supervision, Conceptualization, Methodology, Resources, Writing &ndash; Review &amp; Editing.
+    <strong>1. Md. Nazmul (Corresponding Author):</strong> Lead Researcher, Conceptualization, Methodology &amp; Software Architecture (Email: <code>nazmulhas36@gmail.com</code>, ORCID: <a href="https://orcid.org/0009-0001-6115-7023">0009-0001-6115-7023</a>)<br>
+    <strong>2. Musrat Jahan Gungun (Co-Author):</strong> Data Curation, Baseline Benchmarking, Validation &amp; Statistical Testing (Email: <code>gungunjahan84@gmail.com</code>, ORCID: <a href="https://orcid.org/0009-0006-4249-9198">0009-0006-4249-9198</a>)<br>
+    <strong>3. Maheli Ahmed (Co-Author &amp; Faculty Supervisor):</strong> Faculty Supervision, Resources, Formal Analysis &amp; Model Governance (Email: <code>maheli.ahmed.cse.cot@gmail.com</code>, ORCID: <a href="https://orcid.org/0000-0002-5183-7498">0000-0002-5183-7498</a>)
   </p>
 
   <h2>Data and Code Availability</h2>
@@ -617,7 +617,7 @@ def build_manuscript_pdf():
 def build_cover_letter_pdf():
     print("\n[2/3] Building Editorial Cover Letter PDF (paper/SymSentinel_Cover_Letter.pdf)...")
 
-    html = """<!DOCTYPE html>
+    html = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -684,11 +684,16 @@ def build_cover_letter_pdf():
     </tr>
     <tr>
       <td class="meta-label">FROM:</td>
-      <td><strong>Md. Nazmul</strong> (Corresponding Author &amp; Project Lead)<br>Department of Computer Science and Engineering, College of Technology, National University<br>ORCID: <a href="https://orcid.org/0009-0001-6115-7023">0009-0001-6115-7023</a> | Email: <code>nazmul@nu.ac.bd</code></td>
+      <td><strong>Md. Nazmul</strong> (Corresponding Author)<br>&bull; Role: Lead Researcher, Conceptualization, Methodology &amp; Software Architecture<br>&bull; Email: <code>nazmulhas36@gmail.com</code> | ORCID: <a href="https://orcid.org/0009-0001-6115-7023">0009-0001-6115-7023</a><br>Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh</td>
     </tr>
     <tr>
       <td class="meta-label">CO-AUTHORS:</td>
-      <td><strong>Musrat Jahan Gungun</strong> (ORCID: 0009-0006-4249-9198), <strong>Maheli Ahmed</strong> (Supervisor, ORCID: 0000-0002-5183-7498)</td>
+      <td>
+        <strong>Musrat Jahan Gungun</strong> (Co-Author) &bull; <em>Data Curation, Baseline Benchmarking, Validation &amp; Statistical Testing</em><br>
+        &bull; Email: <code>gungunjahan84@gmail.com</code> | ORCID: <a href="https://orcid.org/0009-0006-4249-9198">0009-0006-4249-9198</a><br><br>
+        <strong>Maheli Ahmed</strong> (Co-Author &amp; Faculty Supervisor) &bull; <em>Faculty Supervision, Resources, Formal Analysis &amp; Model Governance</em><br>
+        &bull; Email: <code>maheli.ahmed.cse.cot@gmail.com</code> | ORCID: <a href="https://orcid.org/0000-0002-5183-7498">0000-0002-5183-7498</a>
+      </td>
     </tr>
     <tr>
       <td class="meta-label">DATE:</td>
@@ -730,10 +735,10 @@ def build_cover_letter_pdf():
   <div class="sig-block">
     <p>Sincerely,</p>
     <p><strong>Md. Nazmul</strong><br>
-    Lead &amp; Corresponding Author, Project Leader<br>
+    Lead Researcher &amp; Corresponding Author<br>
     Department of Computer Science and Engineering, College of Technology,<br>
     National University, Gazipur, Bangladesh<br>
-    ORCID: 0009-0001-6115-7023 &bull; Email: <code>nazmul@nu.ac.bd</code><br>
+    ORCID: 0009-0001-6115-7023 &bull; Email: <code>nazmulhas36@gmail.com</code><br>
     <em>(On behalf of Musrat Jahan Gungun and Maheli Ahmed)</em></p>
   </div>
 
@@ -750,7 +755,7 @@ def build_cover_letter_pdf():
 def build_journal_targeting_pdf():
     print("\n[3/3] Building Journal Targeting Dossier PDF (paper/SymSentinel_Journal_Targeting.pdf)...")
 
-    html = """<!DOCTYPE html>
+    html = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -776,7 +781,8 @@ def build_journal_targeting_pdf():
 <body>
   <h1>SymSentinel: Journal Scope &amp; Submission Strategy Dossier</h1>
   <p><strong>Manuscript:</strong> Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift<br>
-  <strong>Authors:</strong> Md. Nazmul, Musrat Jahan Gungun, Maheli Ahmed &bull; <em>National University, Bangladesh</em></p>
+  <strong>Authors:</strong> 1. Md. Nazmul (Corresponding Author, <code>nazmulhas36@gmail.com</code>) &bull; 2. Musrat Jahan Gungun (Co-Author, <code>gungunjahan84@gmail.com</code>) &bull; 3. Maheli Ahmed (Supervisor, <code>maheli.ahmed.cse.cot@gmail.com</code>)<br>
+  <em>Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh</em></p>
 
   <h2>1. Editorial Landscape &amp; Comparative Fit</h2>
   <table>

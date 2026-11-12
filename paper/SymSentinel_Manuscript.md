@@ -2,7 +2,7 @@
 
 **Md. Nazmul**$^{1,*}$ ([ORCID: 0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)), **Musrat Jahan Gungun**$^{1}$ ([ORCID: 0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)), **Maheli Ahmed**$^{1}$ ([ORCID: 0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498))  
 $^{1}$*Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*  
-$^{*}$*Corresponding Author & Project Lead: nazmul@nu.ac.bd*  
+$^{*}$*Corresponding Author & Lead Researcher: nazmulhas36@gmail.com*  
 **Date:** November 12, 2026  
 **Target Venue:** *Quantum* (Perspective & Research Track)
 
@@ -579,9 +579,12 @@ Substituting the shot scale $K$ gives the stated result. $\blacksquare$
 
 ## Author Contributions (CRediT Statement)
 
-- **Md. Nazmul** ([ORCID: 0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)): Conceptualization, Methodology, Software, Formal Analysis, Investigation, Writing – Original Draft, Project Administration.
-- **Musrat Jahan Gungun** ([ORCID: 0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)): Methodology, Validation, Software, Data Curation, Formal Analysis, Writing – Review & Editing.
-- **Maheli Ahmed** ([ORCID: 0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)): Supervision, Conceptualization, Methodology, Resources, Writing – Review & Editing.
+1. **Md. Nazmul** (Corresponding Author, ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023), `nazmulhas36@gmail.com`):  
+   • **Role:** Lead Researcher, Conceptualization, Methodology & Software Architecture.
+2. **Musrat Jahan Gungun** (Co-Author, ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198), `gungunjahan84@gmail.com`):  
+   • **Role:** Data Curation, Baseline Benchmarking, Validation & Statistical Testing.
+3. **Maheli Ahmed** (Co-Author & Faculty Supervisor, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498), `maheli.ahmed.cse.cot@gmail.com`):  
+   • **Role:** Faculty Supervision, Resources, Formal Analysis & Model Governance.
 
 ## Data and Code Availability
 

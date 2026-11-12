@@ -1,8 +1,11 @@
 # SymSentinel: Target Journal Selection & Scope Fit Analysis
 
 **Manuscript Title:** Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift  
-**Authors:** Md. Nazmul$^{1,*}$ (ORCID: 0009-0001-6115-7023), Musrat Jahan Gungun$^{1}$ (ORCID: 0009-0006-4249-9198), Maheli Ahmed$^{1}$ (ORCID: 0000-0002-5183-7498)  
-**Affiliation:** $^{1}$Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh  
+**Authors:**  
+1. **Md. Nazmul** (Corresponding Author, `nazmulhas36@gmail.com`, ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)) &bull; *Lead Researcher, Conceptualization, Methodology & Software Architecture*  
+2. **Musrat Jahan Gungun** (Co-Author, `gungunjahan84@gmail.com`, ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)) &bull; *Data Curation, Baseline Benchmarking, Validation & Statistical Testing*  
+3. **Maheli Ahmed** (Co-Author & Faculty Supervisor, `maheli.ahmed.cse.cot@gmail.com`, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)) &bull; *Faculty Supervision, Resources, Formal Analysis & Model Governance*  
+**Affiliation:** Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh  
 **Primary Discipline:** Quantum Information Science, Statistical Machine Learning, Quantum Computing Hardware  
 **Target Journal:** ***Quantum*** (The Open Journal for Quantum Science)  
 **Secondary / Alternative Targets:** ***PRX Quantum*** (APS), ***IEEE Transactions on Quantum Engineering*** (IEEE TQE)
