@@ -2,9 +2,12 @@
 
 **Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift**
 
+**Authors:** Md Nazmul, Musrat Jahan Gungun, Mahile Ahmed  
+*Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
-[![Tests](https://img.shields.io/badge/Tests-8%2F8%20Passing-success.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-11%2F11%20Passing-success.svg)]()
 
 `symsentinel` is an open-source Python library that transforms quantum circuit symmetries into real-time, zero-extra-shot hardware drift sensors. It drives an anytime-valid recalibration policy with certified false-alarm control (ARL), distribution-free risk bounds, and up to **80%+ cost reduction** over traditional periodic recalibration on cloud QPUs.
 
@@ -165,25 +168,30 @@ All experiments were executed with pre-registered parameters and strict threshol
 - `figures/fig5_cost_vs_risk_benchmarks.png`: Comprehensive operational cloud cost comparison across all 6 baselines.
 - `figures/fig6_hardware_replay_and_blindspot.png`: Multi-sentinel greedy set-cover coverage and 3-tier cascade efficiency.
 
-### Submission Manuscript (`paper/`)
-The complete, submission-ready scientific manuscript formatted for *Quantum* is available in:
-- Markdown format: [`paper/SymSentinel_Manuscript.md`](paper/SymSentinel_Manuscript.md)
-- LaTeX format: [`paper/SymSentinel_Manuscript.tex`](paper/SymSentinel_Manuscript.tex)
+### Submission Manuscript & Documents (`paper/`)
+The complete, submission-ready scientific package formatted for *Quantum* is available in:
+- Compiled Manuscript (PDF): [`paper/SymSentinel_Manuscript.pdf`](paper/SymSentinel_Manuscript.pdf)
+- Official Cover Letter (PDF): [`paper/SymSentinel_Cover_Letter.pdf`](paper/SymSentinel_Cover_Letter.pdf)
+- Journal Scope Dossier (PDF): [`paper/SymSentinel_Journal_Targeting.pdf`](paper/SymSentinel_Journal_Targeting.pdf)
+- Complete Submission ZIP Bundle: [`dist/SymSentinel_Submission_Bundle.zip`](dist/SymSentinel_Submission_Bundle.zip)
+- Markdown Manuscript: [`paper/SymSentinel_Manuscript.md`](paper/SymSentinel_Manuscript.md)
+- LaTeX Manuscript: [`paper/SymSentinel_Manuscript.tex`](paper/SymSentinel_Manuscript.tex)
 
 ---
 
 ## 📜 Citation & Authors
 
-**Authors:**
-- **Md. Nazmul** (Lead & Corresponding Author, ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023), `nazmul@nu.ac.bd`)
+**Authors:** Md Nazmul, Musrat Jahan Gungun, Mahile Ahmed
+
+- **Md Nazmul** (Lead & Corresponding Author, ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023), `nazmul@nu.ac.bd`)
 - **Musrat Jahan Gungun** (Researcher, ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198))
-- **Maheli Ahmed** (Supervisor, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498))  
+- **Mahile Ahmed** (Supervisor, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498))  
 *Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*
 
 ```bibtex
 @article{nazmul2026symsentinel,
   title={Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift},
-  author={Nazmul, Md. and Gungun, Musrat Jahan and Ahmed, Maheli},
+  author={Nazmul, Md and Gungun, Musrat Jahan and Ahmed, Mahile},
   journal={Quantum (Submitted)},
   year={2026}
 }
