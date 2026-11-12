@@ -1,0 +1,42 @@
+name: SymSentinel CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Pytest & Gate Verification
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev]"
+        pip install matplotlib
+
+    - name: Run Pre-Registered Unit Tests (8/8 Gates)
+      run: |
+        python -m pytest -v tests/test_symsentinel.py
+
+    - name: Verify CLI Functionality
+      run: |
+        python -m symsentinel.cli --help
+        python -m symsentinel.cli simulate --epochs 5 --shots 512
+        python -m symsentinel.cli bundle

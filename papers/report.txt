@@ -1,0 +1,100 @@
+EXISTS   1.1 2210.01948: Game-theoretic statistics and safe anytime-valid inference
+EXISTS   1.2 1810.08240: Time-uniform, nonparametric, nonasymptotic confidence sequences
+EXISTS   1.3 1808.03204: Time-uniform Chernoff bounds via nonnegative supermartingales
+EXISTS   1.4 2010.09686: Estimating means of bounded random variables by betting
+EXISTS   1.5 2203.03532: E-detectors: a nonparametric framework for sequential change detection
+EXISTS   1.6 2009.03167: Admissible anytime-valid sequential inference must rely on nonnegative martingales
+EXISTS   1.7 1906.07801: Safe Testing
+EXISTS   1.8 1912.06116: E-values: Calibration, combination, and applications
+EXISTS   1.9 2009.02824: False discovery rate control with e-values
+EXISTS   1.10 2410.23614: Hypothesis testing with e-values
+EXISTS   1.11 2302.02544: Sequential change detection via backward confidence sequences
+EXISTS   1.12 2112.09162: Nonparametric Two-Sample Testing by Betting
+EXISTS   1.13 2212.07383: Sequential Kernelized Independence Testing
+EXISTS   1.14 2103.09267: Martingale Methods for Sequential Estimation of Convex Functionals and Divergences
+EXISTS   1.15 2110.06177: Tracking the risk of a deployed model and detecting harmful distribution shifts
+EXISTS   1.16 2103.06476: Time-uniform central limit theory and asymptotic confidence sequences
+EXISTS   1.17 2006.04347: Confidence sequences for sampling without replacement
+EXISTS   1.18 2210.10768: Anytime-valid off-policy inference for contextual bandits
+EXISTS   1.19 2608.12660: Universality of e-detectors for ARL control
+EXISTS   1.20 2609.05752: A complete characterization of sequential testability and change detectability in i.i.d. models
+EXISTS   1.21 2605.20270: Conformal Selective Acting: Anytime-Valid Risk Control for RLVR-Trained LLMs
+EXISTS   1.22 2607.28322: Non-partitioned e-detectors for nonparametric sequential change detection
+EXISTS   1.23 2609.00536: Anytime-Valid Distribution Shift Detection via Predictive Rank Martingales
+EXISTS   1.24 2203.04485: A composite generalization of Ville's martingale theorem using e-processes
+EXISTS   2.1 2208.02814: Conformal Risk Control
+EXISTS   2.2 2101.02703: Distribution-Free, Risk-Controlling Prediction Sets
+EXISTS   2.3 2107.07511: A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification
+EXISTS   2.4 2106.00170: Adaptive Conformal Inference Under Distribution Shift
+EXISTS   2.5 2202.13415: Conformal prediction beyond exchangeability
+EXISTS   2.6 2310.01262: Non-Exchangeable Conformal Risk Control
+EXISTS   2.7 1904.06019: Conformal Prediction Under Covariate Shift
+EXISTS   2.8 2202.07282: Adaptive Conformal Predictions for Time Series
+EXISTS   2.9 2208.08401: Conformal Inference for Online Prediction with Arbitrary Distribution Shifts
+EXISTS   2.10 2302.07869: Improved Online Conformal Prediction via Strongly Adaptive Online Learning
+EXISTS   2.11 2205.09095: Achieving Risk Control in Online Learning Settings
+EXISTS   2.12 2307.16895: Conformal PID Control for Time Series Prediction
+EXISTS   2.13 2010.09107: Conformal prediction for time series
+EXISTS   2.14 2402.01139: Online conformal prediction with decaying step sizes
+EXISTS   2.15 2103.03323: Distribution-free uncertainty quantification for classification under label shift
+EXISTS   2.16 2104.08279: Testing for Outliers with Conformal p-values
+EXISTS   2.17 2503.13050: E-Values Expand the Scope of Conformal Prediction
+EXISTS   2.18 2602.04364: Anytime-Valid Conformal Risk Control
+EXISTS   2.19 2511.04275: Online conformal inference with retrospective adjustment for faster adaptation to distribution shift
+EXISTS   2.20 2310.12964: PAC Prediction Sets Under Label Shift
+EXISTS   2.21 2102.10439: Retrain or not retrain: Conformal test martingales for change-point detection
+EXISTS   2.22 2405.06627: Conformal Validity Guarantees Exist for Any Data Distribution (and How to Find Them)
+EXISTS   3.1 1801.00862: Quantum Computing in the NISQ era and beyond
+EXISTS   3.2 2012.09265: Variational Quantum Algorithms
+EXISTS   3.3 1612.02058: Error mitigation for short-depth quantum circuits
+EXISTS   3.4 1805.04492: Extending the computational reach of a noisy superconducting quantum processor
+EXISTS   3.5 2210.00921: Quantum Error Mitigation
+EXISTS   3.6 1807.10050: Low-cost error mitigation by symmetry verification
+EXISTS   3.7 1902.11258: Error Mitigation by Symmetry Verification on a Variational Quantum Eigensolver
+EXISTS   3.8 2310.03071: Group-theoretic error mitigation enabled by classical shadows and symmetries
+EXISTS   3.9 2503.13114: Symmetric channel verification for purifying noisy quantum channels
+EXISTS   3.10 2603.13060: Noise mitigation of quantum observables via learning from Hamiltonian symmetry decays
+EXISTS   4.1 2002.08953: Predicting Many Properties of a Quantum System from Very Few Measurements
+EXISTS   4.2 2203.11374: The randomized measurement toolbox
+EXISTS   4.3 1909.09083: An Adaptive Optimizer for Measurement-Frugal Variational Algorithms
+EXISTS   4.4 2108.10434: Adaptive shot allocation for fast convergence in variational quantum algorithms
+EXISTS   4.5 2302.04422: Latency-aware adaptive shot allocation for run-time efficient variational quantum algorithms
+EXISTS   4.6 2412.17485: Distribution-Adaptive Dynamic Shot Optimization for Variational Quantum Algorithms
+EXISTS   4.7 2605.26544: Adaptive Shot Allocation for Recursive QAOA via Reinforcement Learning
+EXISTS   4.8 2511.19551: SPARTA: $\chi^2$-calibrated, risk-controlled exploration-exploitation for variational quantum algorithms
+EXISTS   4.9 2606.16965: How Many Shots Are Enough for a Quantum Circuit?
+EXISTS   4.10 2608.28535: Hardware-Efficient Error Mitigation and Shot-Efficient Sampling on IBM Quantum Hardware
+EXISTS   4.11 2606.19196: Blind Symmetry Matching in Quantum States with Application to Shot-Count Reduction
+EXISTS   4.12 2604.01429: Classical shadows with arbitrary group representations
+EXISTS   4.13 2605.05518: Classical shadows over symmetric spaces
+EXISTS   4.14 2604.03725: Quantum Algebraic Diversity: Single-Copy Density Matrix Estimation via Group-Structured Measurements
+EXISTS   4.15 2609.11470: Statistical Symmetry Release for Equivariant Quantum Learning
+EXISTS   4.16 2408.09183: Group-invariant estimation of symmetric states generated by noisy quantum computers
+EXISTS   5.1 2205.02261: Group-Invariant Quantum Machine Learning
+EXISTS   5.2 2210.08566: Theory for Equivariant Quantum Neural Networks
+EXISTS   5.3 2210.07980: Representation Theory for Geometric Quantum Machine Learning
+EXISTS   5.4 2205.06217: Exploiting symmetry in variational quantum machine learning
+EXISTS   5.5 2210.09974: Theoretical Guarantees for Permutation-Equivariant Quantum Neural Networks
+EXISTS   5.6 1803.11173: Barren plateaus in quantum neural network training landscapes
+EXISTS   5.7 2007.14384: Noise-Induced Barren Plateaus in Variational Quantum Algorithms
+EXISTS   5.8 2401.10293: Symmetry breaking in geometric quantum machine learning in the presence of noise
+EXISTS   5.9 2304.03398: Quantum Conformal Prediction for Reliable Uncertainty Quantification in Quantum Machine Learning
+EXISTS   5.10 2511.18225: Adaptive Conformal Prediction for Quantum Machine Learning
+EXISTS   5.11 2601.20761: Anytime-Valid Quantum State Tomography via Confidence Sequences
+EXISTS   5.12 2609.02781: Information and reference requirements for auditing collider classifiers
+EXISTS   5.13 2605.30724: Research progress on quantum neural networks and quantum machine learning
+EXISTS   6.1 1907.13608: Detecting and tracking drift in quantum information processors
+EXISTS   6.2 1809.01043: Fluctuations of Energy-Relaxation Times in Superconducting Qubits
+EXISTS   6.3 2010.00215: Randomized compiling for scalable quantum computing on a noisy superconducting quantum processor
+EXISTS   6.4 1512.01098: Noise tailoring for scalable quantum computation via randomized compiling
+EXISTS   6.5 1803.03226: Physical qubit calibration on a directed acyclic graph
+EXISTS   6.6 2408.13687: Quantum error correction below the surface code threshold
+EXISTS   6.7 2603.00837: ReloQate: Transient Drift Detection and In-Situ Recalibration in Surface Code Quantum Error Correction
+EXISTS   7.1 2602.11846: Universal Sequential Changepoint Detection of Quantum Observables via Classical Shadows
+EXISTS   7.2 2605.11860: Runtime Calibration as State-Trajectory Feedback Control in Quantum-Classical Workflows
+EXISTS   7.3 2307.14954: Sequential hypothesis testing for continuously-monitored quantum systems
+EXISTS   7.4 2608.01248: Quantum sequential parameter testing
+EXISTS   7.5 2205.06191: Continuous monitoring for noisy intermediate-scale quantum processors
+EXISTS   7.6 2506.09576: Real-time adaptive tracking of fluctuating relaxation rates in superconducting qubits
+EXISTS   7.7 2404.09212: Physics-informed tracking of qubit fluctuations
+EXISTS   7.8 2609.00169: Exact learning of quantum noise with tensor networks

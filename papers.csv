@@ -1,0 +1,101 @@
+section,ref,arxiv_id,title,status
+1,1.1,2210.01948,"Game-theoretic statistics and safe anytime-valid inference",verified
+1,1.2,1810.08240,"Time-uniform, nonparametric, nonasymptotic confidence sequences",verified
+1,1.3,1808.03204,"Time-uniform Chernoff bounds via nonnegative supermartingales",verified
+1,1.4,2010.09686,"Estimating means of bounded random variables by betting",verified
+1,1.5,2203.03532,"E-detectors: a nonparametric framework for sequential change detection",verified
+1,1.6,2009.03167,"Admissible anytime-valid sequential inference must rely on nonnegative martingales",verified
+1,1.7,1906.07801,"Safe Testing",verified
+1,1.8,1912.06116,"E-values: calibration, combination, and applications",verified
+1,1.9,2009.02824,"False discovery rate control with e-values",verified
+1,1.10,2410.23614,"Hypothesis testing with e-values",verified
+1,1.11,2302.02544,"Sequential change detection via backward confidence sequences",verified
+1,1.12,2112.09162,"Nonparametric two-sample testing by betting",verified
+1,1.13,2212.07383,"Sequential kernelized independence testing",verified
+1,1.14,2103.09267,"Martingale methods for sequential estimation of convex functionals and divergences",verified
+1,1.15,2110.06177,"Tracking the risk of a deployed model and detecting harmful distribution shifts",verified
+1,1.16,2103.06476,"Time-uniform central limit theory and asymptotic confidence sequences",verified
+1,1.17,2006.04347,"Confidence sequences for sampling without replacement",verified
+1,1.18,2210.10768,"Anytime-valid off-policy inference for contextual bandits",verified
+1,1.19,2608.12660,"Universality of e-detectors for ARL control",verified
+1,1.20,2609.05752,"A complete characterization of sequential testability and change detectability in i.i.d. models",verified
+1,1.21,2605.20270,"Conformal selective acting: anytime-valid risk control for RLVR-trained LLMs",verified
+1,1.22,2607.28322,"Non-partitioned e-detectors for nonparametric sequential change detection",verified
+1,1.23,2609.00536,"Anytime-valid distribution shift detection via predictive rank martingales",verified
+1,1.24,2203.04485,"A composite generalization of Ville's martingale theorem using e-processes",verified
+2,2.1,2208.02814,"Conformal risk control",verified
+2,2.2,2101.02703,"Distribution-free, risk-controlling prediction sets",verified
+2,2.3,2107.07511,"A gentle introduction to conformal prediction and distribution-free uncertainty quantification",verified
+2,2.4,2106.00170,"Adaptive conformal inference under distribution shift",verified
+2,2.5,2202.13415,"Conformal prediction beyond exchangeability",verified
+2,2.6,2310.01262,"Non-exchangeable conformal risk control",verified
+2,2.7,1904.06019,"Conformal prediction under covariate shift",verified
+2,2.8,2202.07282,"Adaptive conformal predictions for time series",verified
+2,2.9,2208.08401,"Conformal inference for online prediction with arbitrary distribution shifts",verified
+2,2.10,2302.07869,"Improved online conformal prediction via strongly adaptive online learning",verified
+2,2.11,2205.09095,"Achieving risk control in online learning settings",verified
+2,2.12,2307.16895,"Conformal PID control for time series prediction",verified
+2,2.13,2010.09107,"Conformal prediction for time series",verified
+2,2.14,2402.01139,"Online conformal prediction with decaying step sizes",verified
+2,2.15,2103.03323,"Distribution-free uncertainty quantification for classification under label shift",verified
+2,2.16,2104.08279,"Testing for outliers with conformal p-values",verified
+2,2.17,2503.13050,"E-values expand the scope of conformal prediction",verified
+2,2.18,2602.04364,"Anytime-valid conformal risk control",verified
+2,2.19,2511.04275,"Online conformal inference with retrospective adjustment for faster adaptation to distribution shift",verified
+2,2.20,2310.12964,"PAC prediction sets under label shift",verified
+2,2.21,2102.10439,"Retrain or not retrain: conformal test martingales for change-point detection",verified
+2,2.22,2405.06627,"Conformal validity guarantees exist for any data distribution",verified
+3,3.1,1801.00862,"Quantum computing in the NISQ era and beyond",memory
+3,3.2,2012.09265,"Variational quantum algorithms",memory
+3,3.3,1612.02058,"Error mitigation for short-depth quantum circuits",memory
+3,3.4,1805.04492,"Error mitigation extends the computational reach of a noisy quantum processor",memory
+3,3.5,2210.00921,"Quantum error mitigation",memory
+3,3.6,1807.10050,"Low-cost error mitigation by symmetry verification",verified
+3,3.7,1902.11258,"Experimental error mitigation via symmetry verification in a variational quantum eigensolver",memory
+3,3.8,2310.03071,"Group-theoretic error mitigation enabled by classical shadows and symmetries",verified
+3,3.9,2503.13114,"Symmetric channel verification for purifying noisy quantum channels",verified
+3,3.10,2603.13060,"Noise mitigation of quantum observables via learning from Hamiltonian symmetry decays",verified
+4,4.1,2002.08953,"Predicting many properties of a quantum system from very few measurements",memory
+4,4.2,2203.11374,"The randomized measurement toolbox",memory
+4,4.3,1909.09083,"An adaptive optimizer for measurement-frugal variational algorithms",memory
+4,4.4,2108.10434,"Adaptive shot allocation for fast convergence in variational quantum algorithms",memory
+4,4.5,2302.04422,"Latency-aware adaptive shot allocation for run-time efficient variational quantum algorithms",verified
+4,4.6,2412.17485,"Distribution-adaptive dynamic shot optimization for variational quantum algorithms",verified
+4,4.7,2605.26544,"Adaptive shot allocation for recursive QAOA via reinforcement learning",verified
+4,4.8,2511.19551,"SPARTA: chi-squared calibrated, risk-controlled exploration-exploitation for variational quantum algorithms",verified
+4,4.9,2606.16965,"How many shots are enough for a quantum circuit?",verified
+4,4.10,2608.28535,"Hardware-efficient error mitigation and shot-efficient sampling on IBM quantum hardware",verified
+4,4.11,2606.19196,"Blind symmetry matching in quantum states with application to shot-count reduction",verified
+4,4.12,2604.01429,"Classical shadows with arbitrary group representations",verified
+4,4.13,2605.05518,"Classical shadows protocols beyond group unitary ensembles: a theory over compact symmetric spaces",verified
+4,4.14,2604.03725,"Quantum algebraic diversity: single-copy density matrix estimation via group-structured measurements",verified
+4,4.15,2609.11470,"Statistical symmetry release for equivariant quantum learning",verified
+4,4.16,2408.09183,"Group-invariant estimation of symmetric states generated by noisy quantum computers",verified
+5,5.1,2205.02261,"Group-invariant quantum machine learning",verified
+5,5.2,2210.08566,"Theory for equivariant quantum neural networks",verified
+5,5.3,2210.07980,"Representation theory for geometric quantum machine learning",verified
+5,5.4,2205.06217,"Exploiting symmetry in variational quantum machine learning",memory
+5,5.5,2210.09974,"Theoretical guarantees for permutation-equivariant quantum neural networks",memory
+5,5.6,1803.11173,"Barren plateaus in quantum neural network training landscapes",memory
+5,5.7,2007.14384,"Noise-induced barren plateaus in variational quantum algorithms",memory
+5,5.8,2401.10293,"Symmetry breaking in geometric quantum machine learning in the presence of noise",verified
+5,5.9,2304.03398,"Quantum conformal prediction for reliable uncertainty quantification in quantum machine learning",verified
+5,5.10,2511.18225,"Adaptive conformal prediction for quantum machine learning",verified
+5,5.11,2601.20761,"Anytime-valid quantum tomography via confidence sequences",verified
+5,5.12,2609.02781,"Conditional validity of quantum event classifiers under collider systematics and quantum estimation uncertainty",verified
+5,5.13,2605.30724,"Research progress on quantum neural networks and quantum machine learning",verified
+6,6.1,1907.13608,"Detecting and tracking drift in quantum information processors",verified
+6,6.2,1809.01043,"Fluctuations of energy-relaxation times in superconducting qubits",verified
+6,6.3,2010.00215,"Randomized compiling for scalable quantum computing on a noisy superconducting quantum processor",verified
+6,6.4,1512.01098,"Noise tailoring for scalable quantum computation via randomized compiling",memory
+6,6.5,1803.03226,"Physical qubit calibration on a directed acyclic graph",verified
+6,6.6,2408.13687,"Quantum error correction below the surface code threshold",memory
+6,6.7,2603.00837,"ReloQate: transient drift detection and in-situ recalibration in surface code quantum error correction",verified
+7,7.1,2602.11846,"Universal sequential changepoint detection of quantum observables via classical shadows",verified
+7,7.2,2605.11860,"Runtime calibration as state-trajectory feedback control in quantum-classical workflows",verified
+7,7.3,2307.14954,"Sequential hypothesis testing for continuously-monitored quantum systems",verified
+7,7.4,2608.01248,"Quantum sequential parameter testing",verified
+7,7.5,2205.06191,"Continuous monitoring for noisy intermediate-scale quantum processors",verified
+7,7.6,2506.09576,"Real-time adaptive tracking of fluctuating relaxation rates",verified
+7,7.7,2404.09212,"Physics-informed tracking of qubit fluctuations",verified
+7,7.8,2609.00169,"Exact learning of quantum noise with tensor networks",verified

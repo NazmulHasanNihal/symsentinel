@@ -1,0 +1,49 @@
+{
+  "null_runs": {
+    "10.0": {
+      "gamma": 10.0,
+      "false_alarm_rate": 0.0,
+      "mean_run_length": 200.0,
+      "pass_threshold": true
+    },
+    "20.0": {
+      "gamma": 20.0,
+      "false_alarm_rate": 0.0,
+      "mean_run_length": 200.0,
+      "pass_threshold": true
+    },
+    "50.0": {
+      "gamma": 50.0,
+      "false_alarm_rate": 0.0,
+      "mean_run_length": 200.0,
+      "pass_threshold": true
+    },
+    "100.0": {
+      "gamma": 100.0,
+      "false_alarm_rate": 0.0,
+      "mean_run_length": 200.0,
+      "pass_threshold": true
+    }
+  },
+  "detection_delays": {
+    "0.04": {
+      "delta": 0.04,
+      "theoretical_delay": 1222.5071891962955,
+      "empirical_delay": 200.0,
+      "ratio": 0.16359821992661217
+    },
+    "0.08": {
+      "delta": 0.08,
+      "theoretical_delay": 305.62679729907387,
+      "empirical_delay": 200.0,
+      "ratio": 0.6543928797064487
+    },
+    "0.12": {
+      "delta": 0.12,
+      "theoretical_delay": 135.83413213292175,
+      "empirical_delay": 200.0,
+      "ratio": 1.472383979339509
+    }
+  },
+  "gate_status": "PASSED"
+}

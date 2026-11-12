@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# SymSentinel Research Corpus Data (Large PDFs)
+papers/*.pdf
+papers/.index/
+!papers/report.txt

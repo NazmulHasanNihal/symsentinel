@@ -1,0 +1,17 @@
+{
+  "D1_Coherent": {
+    "symsentinel_violation_rate": 0.0,
+    "periodic_violation_rate": 1.0,
+    "pass_g3": true
+  },
+  "D2_Incoherent": {
+    "symsentinel_violation_rate": 0.0,
+    "periodic_violation_rate": 1.0,
+    "pass_g3": true
+  },
+  "D3_Jump": {
+    "symsentinel_violation_rate": 0.0,
+    "periodic_violation_rate": 1.0,
+    "pass_g3": true
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "Never Recalibrate": {
+    "mean_cost": 24.576,
+    "savings_vs_periodic_pct": 96.065170611743
+  },
+  "Periodic (K=10)": {
+    "mean_cost": 624.576,
+    "savings_vs_periodic_pct": 0.0
+  },
+  "Raw Z-Score Threshold": {
+    "mean_cost": 824.576,
+    "savings_vs_periodic_pct": -32.02172353724767
+  },
+  "Extra-Circuit Sentinel (Q-RACE)": {
+    "mean_cost": 231.94880000000003,
+    "savings_vs_periodic_pct": 62.862998258018244
+  },
+  "Observable e-Detector (eSCD)": {
+    "mean_cost": 134.40640000000002,
+    "savings_vs_periodic_pct": 78.48037708781638
+  },
+  "Oracle (Instant Reset)": {
+    "mean_cost": 124.57600000000001,
+    "savings_vs_periodic_pct": 80.05430884311917
+  },
+  "SymSentinel 2.0 (3-Tier + Shot Early Stop)": {
+    "mean_cost": 21.144000000000002,
+    "savings_vs_periodic_pct": 96.61466338764217
+  }
+}
