@@ -61,21 +61,21 @@ def save_figure(fig, base_name: str):
 # FIGURE 1: Pipeline Schematic Architecture
 # ==============================================================================
 def make_fig1_pipeline():
-    fig, ax = plt.subplots(figsize=(12, 6))
+    fig, ax = plt.subplots(figsize=(13, 6))
     ax.axis("off")
 
-    # Flowchart boxes
+    # Flowchart boxes with widened dimensions and generous padding
     boxes = [
-        {"text": "Symmetric Quantum\nLearner Circuit\n$U(\\theta)$ with $[U, \\Pi] = 0$", "xy": (0.08, 0.5), "w": 0.16, "h": 0.28, "color": "#E3F2FD", "ec": "#1565C0"},
-        {"text": "Zero-Cost\nComputational\nBasis Shots\n$X = \\{x^{(1)}, \\dots, x^{(K)}\\}$", "xy": (0.30, 0.5), "w": 0.16, "h": 0.28, "color": "#EDE7F6", "ec": "#512DA8"},
+        {"text": "Symmetric Quantum\nLearner Circuit\n$U(\\theta)$ with $[U, S] = 0$", "xy": (0.09, 0.5), "w": 0.16, "h": 0.28, "color": "#E3F2FD", "ec": "#1565C0"},
+        {"text": "Zero-Cost\nComputational\nBasis Shots\n$X = \\{x^{(1)}, \\dots, x^{(K)}\\}$", "xy": (0.31, 0.5), "w": 0.16, "h": 0.28, "color": "#EDE7F6", "ec": "#512DA8"},
         # Dual branch top: Observable Estimation
-        {"text": "Branch A (Learning Task)\nObservable Estimation\n$\\hat{f}(\\theta) = \\frac{1}{K} \\sum O(x^{(k)})$\nZero Overhead", "xy": (0.55, 0.72), "w": 0.20, "h": 0.24, "color": "#E8F5E9", "ec": "#2E7D32"},
+        {"text": "Branch A (Learning Task)\nObservable Estimation\n$\\hat{f}(\\theta) = \\frac{1}{K} \\sum O(x^{(k)})$\nZero Overhead", "xy": (0.56, 0.72), "w": 0.21, "h": 0.25, "color": "#E8F5E9", "ec": "#2E7D32"},
         # Dual branch bottom: Free Sentinel
-        {"text": "Branch B (SymSentinel)\nFree Symmetry Syndrome\n$s(x^{(k)}) = \\sum_{j \\in S} x_j^{(k)} \\,\\mathrm{mod}\\,2$\nEpoch mean $\\nu_t = \\frac{1}{K} \\sum s$", "xy": (0.55, 0.28), "w": 0.20, "h": 0.24, "color": "#FFF3E0", "ec": "#E65100"},
+        {"text": "Branch B (SymSentinel)\nFree Symmetry Syndrome\n$s(x^{(k)}) = \\sum_{j \\in S} x_j^{(k)} \\,\\mathrm{mod}\\,2$\nEpoch mean $\\nu_t = \\frac{1}{K} \\sum s$", "xy": (0.56, 0.28), "w": 0.21, "h": 0.25, "color": "#FFF3E0", "ec": "#E65100"},
         # Nonparametric e-detector
-        {"text": "Nonparametric\nBetting E-Detector\n$M_t = \\prod_{i=1}^t (1 + \\lambda_i(z_i - \\mu_0))$\nVille's Bound: $\\mathbb{P}(\\exists t: M_t \\geq \\gamma) \\leq 1/\\gamma$", "xy": (0.80, 0.28), "w": 0.17, "h": 0.24, "color": "#FBE9E7", "ec": "#D84315"},
+        {"text": "Nonparametric\nBetting E-Detector\n$M_t = \\prod_{i=1}^t (1 + \\lambda_i(z_i - \\mu_0))$\nVille's Bound:\n$\\mathbb{P}(\\exists t: M_t \\geq \\gamma) \\leq 1/\\gamma$", "xy": (0.83, 0.28), "w": 0.22, "h": 0.26, "color": "#FBE9E7", "ec": "#D84315"},
         # 3-Tier Controller
-        {"text": "3-Tier Recalibration\nCascade Controller\nTier 1: Virtual-Z (0 shots, $0)\nTier 2: Subsystem Pulse ($15)\nTier 3: Full Reset ($100)", "xy": (0.80, 0.72), "w": 0.17, "h": 0.24, "color": "#FCE4EC", "ec": "#C2185B"},
+        {"text": "3-Tier Recalibration\nCascade Controller\nTier 1: Virtual-Z (0 shots, \\$0)\nTier 2: Subsystem Pulse (\\$15)\nTier 3: Full Reset (\\$100)", "xy": (0.83, 0.72), "w": 0.22, "h": 0.26, "color": "#FCE4EC", "ec": "#C2185B"},
     ]
 
     for b in boxes:
@@ -83,25 +83,25 @@ def make_fig1_pipeline():
         w, h = b["w"], b["h"]
         rect = FancyBboxPatch((x - w/2, y - h/2), w, h, facecolor=b["color"], edgecolor=b["ec"], lw=2, zorder=2, boxstyle="round,pad=0.03")
         ax.add_patch(rect)
-        ax.text(x, y, b["text"], ha="center", va="center", fontsize=9.5, fontweight="bold", color="#212121", zorder=3)
+        ax.text(x, y, b["text"], ha="center", va="center", fontsize=9.2, fontweight="bold", color="#212121", zorder=3)
 
     # Connecting arrows
     arrow_props = dict(facecolor="#424242", edgecolor="#424242", width=1.5, headwidth=8, headlength=8, shrink=0.05)
     
     # Circuit -> Shots
-    ax.annotate("", xy=(0.22, 0.5), xytext=(0.16, 0.5), arrowprops=arrow_props)
+    ax.annotate("", xy=(0.23, 0.5), xytext=(0.17, 0.5), arrowprops=arrow_props)
     # Shots -> Branch A
-    ax.annotate("", xy=(0.45, 0.72), xytext=(0.38, 0.58), arrowprops=arrow_props)
+    ax.annotate("", xy=(0.45, 0.72), xytext=(0.39, 0.58), arrowprops=arrow_props)
     # Shots -> Branch B
-    ax.annotate("", xy=(0.45, 0.28), xytext=(0.38, 0.42), arrowprops=arrow_props)
+    ax.annotate("", xy=(0.45, 0.28), xytext=(0.39, 0.42), arrowprops=arrow_props)
     # Branch B -> E-detector
-    ax.annotate("", xy=(0.715, 0.28), xytext=(0.65, 0.28), arrowprops=arrow_props)
+    ax.annotate("", xy=(0.72, 0.28), xytext=(0.67, 0.28), arrowprops=arrow_props)
     # E-detector -> 3-Tier Controller
-    ax.annotate("", xy=(0.80, 0.60), xytext=(0.80, 0.40), arrowprops=arrow_props)
+    ax.annotate("", xy=(0.83, 0.59), xytext=(0.83, 0.41), arrowprops=arrow_props)
     # Controller -> Circuit (Recalibration feedback loop)
-    ax.annotate("", xy=(0.08, 0.36), xytext=(0.08, 0.10), arrowprops=arrow_props)
-    ax.plot([0.80, 0.80, 0.08, 0.08], [0.60, 0.06, 0.06, 0.36], color="#C2185B", ls="--", lw=1.8, zorder=1)
-    ax.text(0.44, 0.08, "Closed-Loop Corrective Recalibration (Cost Savings: >80%)", ha="center", va="bottom", fontsize=10, fontweight="bold", color="#C2185B")
+    ax.annotate("", xy=(0.09, 0.36), xytext=(0.09, 0.10), arrowprops=arrow_props)
+    ax.plot([0.83, 0.83, 0.09, 0.09], [0.59, 0.06, 0.06, 0.36], color="#C2185B", ls="--", lw=1.8, zorder=1)
+    ax.text(0.46, 0.08, "Closed-Loop Corrective Recalibration (Cost Savings: >80%)", ha="center", va="bottom", fontsize=10, fontweight="bold", color="#C2185B")
 
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
@@ -143,7 +143,7 @@ def make_fig2_blind_spot():
 
     # Panel B: The Blind-Spot Theorem Counterexample
     blind_data = g2["blind_spot"]
-    categories = ["Visible Fault\n$[E_k, \\Pi] \\neq 0$", "Blind Fault (Theorem T2)\n$[E_k, \\Pi] = 0$"]
+    categories = ["Visible Fault\n$(\\{E_k, S\\} = 0)$", "Blind Fault (Theorem 2)\n$([E_k, S] = 0)$"]
     violations = [blind_data["visible_violation"], blind_data["blind_violation"]]
     risks = [blind_data["visible_risk"], blind_data["blind_risk"]]
 
@@ -157,7 +157,7 @@ def make_fig2_blind_spot():
     ax2.set_xticks(x)
     ax2.set_xticklabels(categories, fontweight="bold")
     ax2.set_ylabel("Rate / Normalized Magnitude")
-    ax2.set_title("(b) The Blind-Spot Theorem T2 & Invisible Drift")
+    ax2.set_title("(b) The Blind-Spot Theorem & Invisible Drift")
     ax2.legend(loc="upper left")
     ax2.set_ylim(0, 0.35)
 
@@ -299,14 +299,14 @@ def make_fig4_certificate_validity():
     axes[2].set_xlabel("Epoch ($t$)")
     axes[2].legend(loc="upper left", fontsize=9)
 
-    plt.suptitle("Figure 4: Gate G3 Risk Certification — Uniform Anytime-Valid Coverage Across Regimes D1, D2, D3", fontsize=13, fontweight="bold", y=1.02)
+    plt.suptitle("Figure 4: Risk Certification — Uniform Anytime-Valid Coverage Across Regimes D1, D2, D3", fontsize=13, fontweight="bold", y=1.02)
     plt.tight_layout()
     save_figure(fig, "fig4_certificate_validity")
     plt.close()
 
 
 # ==============================================================================
-# FIGURE 5: Operational Cost Benchmarks (Gate G4)
+# FIGURE 5: Operational Cost Benchmarks
 # ==============================================================================
 def make_fig5_cost_benchmarks():
     with open(os.path.join(DATA_DIR, "results_g4.json")) as f:
@@ -320,7 +320,7 @@ def make_fig5_cost_benchmarks():
         "Observable e-Detector (eSCD)",
         "Oracle (Instant Reset)",
         "Never Recalibrate",
-        "SymSentinel 2.0 (Ours)",
+        "SymSentinel (Ours)",
     ]
     
     # Map raw names
@@ -331,7 +331,7 @@ def make_fig5_cost_benchmarks():
         "Observable e-Detector (eSCD)": "Observable e-Detector (eSCD)",
         "Oracle (Instant Reset)": "Oracle (Instant Reset)",
         "Never Recalibrate": "Never Recalibrate",
-        "SymSentinel 2.0 (Ours)": "SymSentinel 2.0 (3-Tier + Shot Early Stop)",
+        "SymSentinel (Ours)": "SymSentinel 2.0 (3-Tier + Shot Early Stop)",
     }
 
     costs = [g4[key_map[b]]["mean_cost"] for b in baselines]
@@ -354,7 +354,7 @@ def make_fig5_cost_benchmarks():
     ax.set_yticklabels(baselines, fontweight="bold")
     ax.invert_yaxis()  # Top to bottom
     ax.set_xlabel("Mean Total Operational Cost ($ per 60 Epochs)")
-    ax.set_title("Figure 5: Gate G4 Operational Cost Benchmarking across Cloud QPU Workloads", fontsize=13, fontweight="bold")
+    ax.set_title("Figure 5: Operational Cost Benchmarking across Cloud QPU Workloads", fontsize=13, fontweight="bold")
 
     # Annotate savings
     periodic_cost = g4["Periodic (K=10)"]["mean_cost"]
@@ -363,7 +363,7 @@ def make_fig5_cost_benchmarks():
         pct = (periodic_cost - c) / periodic_cost * 100
         if baselines[i] == "Never Recalibrate":
             ax.text(c + 12, bar.get_y() + bar.get_height()/2, f"${c:.2f} (Catastrophic Risk Failure)", va="center", fontsize=9.5, color="#D32F2F", fontweight="bold")
-        elif baselines[i] == "SymSentinel 2.0 (Ours)":
+        elif baselines[i] == "SymSentinel (Ours)":
             ax.text(c + 12, bar.get_y() + bar.get_height()/2, f"${c:.2f} ({pct:+.1f}% Savings vs Periodic | 82.9% vs Oracle!)", va="center", fontsize=10, color="#1B5E20", fontweight="bold")
         else:
             ax.text(c + 12, bar.get_y() + bar.get_height()/2, f"${c:.2f} ({pct:+.1f}%)", va="center", fontsize=9.5, color="#424242")
@@ -412,10 +412,10 @@ def make_fig6_hardware_replay():
              bbox=dict(boxstyle="round,pad=0.3", fc="#E3F2FD", ec="#1565C0", lw=1))
     ax1.text(2.0, 108, r"100% Coverage ($\leq 5\%$ Rotation Shots)", ha="center", va="bottom", fontsize=8.5, fontweight="bold", color="#2E7D32")
 
-    # Combine legends
+    # Combine legends - placed in upper left so it doesn't cover bars
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax1_twin.get_legend_handles_labels()
-    ax1.legend(lines1 + lines2, labels1 + labels2, loc="lower right", fontsize=8.5)
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left", fontsize=8.5)
 
     # Panel B: 3-Tier Cascade Controller Shot & Time Consumption
     tiers = ["Tier 1: Virtual-Z", "Tier 2: Subsystem Pulse", "Tier 3: Full Reset"]

@@ -1,6 +1,6 @@
 # Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift
 
-**Md. Nazmul**$^{1,*}$ ([ORCID: 0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)), **Musrat Jahan Gungun**$^{1}$ ([ORCID: 0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)), **Maheli Ahmed**$^{1}$ ([ORCID: 0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498))  
+**Md. Nazmul**$^{1,*}$ ([ORCID: 0009-0001-6115-7823](https://orcid.org/0009-0001-6115-7823)), **Musrat Jahan Gungun**$^{1}$ ([ORCID: 0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)), **Maheli Ahmed**$^{1}$ ([ORCID: 0000-0002-5183-7496](https://orcid.org/0000-0002-5183-7496))  
 $^{1}$*Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*  
 $^{*}$*Corresponding Author & Lead Researcher: nazmulhas36@gmail.com*  
 **Date:** November 12, 2026  
@@ -329,9 +329,9 @@ SymSentinel introduces a mathematically rigorous, zero-overhead paradigm for har
 
 ## Author Contributions (CRediT Statement)
 
-- **Md. Nazmul** (Lead Author, Lead Researcher, `nazmulhas36@gmail.com`, [ORCID: 0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)): Conceptualization, Methodology, Software Architecture, Formal Proofs, Writing -- Original Draft.
+- **Md. Nazmul** (Lead Author, Lead Researcher, `nazmulhas36@gmail.com`, [ORCID: 0009-0001-6115-7823](https://orcid.org/0009-0001-6115-7823)): Conceptualization, Methodology, Software Architecture, Formal Proofs, Writing -- Original Draft.
 - **Musrat Jahan Gungun** (Co-Author, `gungunjahan84@gmail.com`, [ORCID: 0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)): Data Curation, Baseline Benchmarking, Hardware Replay Simulation, Validation & Statistical Testing.
-- **Maheli Ahmed** (Co-Author & Faculty Supervisor, `maheli.ahmed.cse.cot@gmail.com`, [ORCID: 0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)): Supervision, Research Project Governance, Formal Analysis, Writing -- Review & Editing.
+- **Maheli Ahmed** (Co-Author & Faculty Supervisor, `maheli.ahmed.cse.cot@gmail.com`, [ORCID: 0000-0002-5183-7496](https://orcid.org/0000-0002-5183-7496)): Supervision, Research Project Governance, Formal Analysis, Writing -- Review & Editing.
 
 ## Data and Code Availability
 

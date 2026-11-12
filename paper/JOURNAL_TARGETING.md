@@ -2,9 +2,9 @@
 
 **Manuscript Title:** Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift  
 **Authors:**  
-1. **Md. Nazmul** (Corresponding Author, `nazmulhas36@gmail.com`, ORCID: [0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)) &bull; *Lead Researcher, Conceptualization, Methodology & Software Architecture*  
+1. **Md. Nazmul** (Corresponding Author, `nazmulhas36@gmail.com`, ORCID: [0009-0001-6115-7823](https://orcid.org/0009-0001-6115-7823)) &bull; *Lead Researcher, Conceptualization, Methodology & Software Architecture*  
 2. **Musrat Jahan Gungun** (Co-Author, `gungunjahan84@gmail.com`, ORCID: [0009-0006-4249-9198](https://orcid.org/0009-0006-4249-9198)) &bull; *Data Curation, Baseline Benchmarking, Validation & Statistical Testing*  
-3. **Maheli Ahmed** (Co-Author & Faculty Supervisor, `maheli.ahmed.cse.cot@gmail.com`, ORCID: [0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)) &bull; *Faculty Supervision, Resources, Formal Analysis & Model Governance*  
+3. **Maheli Ahmed** (Co-Author & Faculty Supervisor, `maheli.ahmed.cse.cot@gmail.com`, ORCID: [0000-0002-5183-7496](https://orcid.org/0000-0002-5183-7496)) &bull; *Faculty Supervision, Resources, Formal Analysis & Model Governance*  
 **Affiliation:** Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh  
 **Primary Discipline:** Quantum Information Science, Statistical Machine Learning, Quantum Computing Hardware  
 **Target Journal:** ***Quantum*** (The Open Journal for Quantum Science)  

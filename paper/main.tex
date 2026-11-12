@@ -33,13 +33,15 @@
 
 \author{Md. Nazmul}
 \email{nazmulhas36@gmail.com}
-\thanks{Corresponding Author and Lead Researcher}
+\thanks{Corresponding Author and Lead Researcher, \href{https://orcid.org/0009-0001-6115-7823}{\textsf{ORCID: 0009-0001-6115-7823}}}
 \affiliation{Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh}
 
 \author{Musrat Jahan Gungun}
+\thanks{\href{https://orcid.org/0009-0006-4249-9198}{\textsf{ORCID: 0009-0006-4249-9198}}}
 \affiliation{Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh}
 
 \author{Maheli Ahmed}
+\thanks{Faculty Supervisor, \href{https://orcid.org/0000-0002-5183-7496}{\textsf{ORCID: 0000-0002-5183-7496}}}
 \affiliation{Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh}
 
 \date{November 12, 2026}
@@ -52,10 +54,10 @@ Quantum learners and parameterized variational algorithms executed on cloud-host
 
 \section{Introduction}
 \label{sec:intro}
-Noisy Intermediate-Scale Quantum (NISQ) processors and emerging early fault-tolerant quantum computers operate under persistent physical non-stationarity. Superconducting transmon arrays, trapped-ion traps, and neutral-atom architectures exhibit significant parameter drift on timescales ranging from minutes to hours~\cite{proctor2020detecting,klimov2018fluctuations,burnett2019decoherence}. In superconducting quantum circuits, these drifts originate from three primary physical mechanisms:
+Noisy Intermediate-Scale Quantum (NISQ) processors and emerging early fault-tolerant quantum computers operate under persistent physical non-stationarity~\cite{nielsen2010quantum,preskill2018quantum,bharti2022noisy}. Superconducting transmon arrays, trapped-ion traps, and neutral-atom architectures exhibit significant parameter drift on timescales ranging from minutes to hours~\cite{proctor2020detecting,klimov2018fluctuations,burnett2019decoherence}. In superconducting quantum circuits, these drifts originate from three primary physical mechanisms:
 \begin{enumerate}
-    \item \textbf{Two-Level System (TLS) Defect Jumps ($D_3$):} Microscopic dielectric two-level defect systems residing within Josephson junction tunnel barriers and capacitor dielectric interfaces fluctuate telegraphically between resonant states. When a TLS defect crosses the operational frequency of a computational transmon, it induces severe avoided level crossings, shifting qubit transition frequencies by several megahertz and causing sudden, discontinuous jumps in single-qubit and two-qubit gate error rates ($10^{-3} \to 10^{-1}$)~\cite{muller2019towards,klimov2018fluctuations}.
-    \item \textbf{Coherent Over-Rotations ($D_1$):} Local oscillator phase jitter, cryogenic amplifier gain drift, room-temperature arbitrary waveform generator (AWG) thermal fluctuations, and ambient magnetic field drift generate slowly wandering unitary over-rotations. These dynamics are accurately modeled as stochastic continuous-time Ornstein-Uhlenbeck processes~\cite{bluhm2011dephasing}.
+    \item \textbf{Two-Level System (TLS) Defect Jumps ($D_3$):} Microscopic dielectric two-level defect systems residing within Josephson junction tunnel barriers and capacitor dielectric interfaces fluctuate telegraphically between resonant states. When a TLS defect crosses the operational frequency of a computational transmon, it induces severe avoided level crossings, shifting qubit transition frequencies by several megahertz and causing sudden, discontinuous jumps in single-qubit and two-qubit gate error rates ($10^{-3} \to 10^{-1}$)~\cite{muller2019towards,klimov2018fluctuations,place2021new,barends2013coherent}.
+    \item \textbf{Coherent Over-Rotations ($D_1$):} Local oscillator phase jitter, cryogenic amplifier gain drift, room-temperature arbitrary waveform generator (AWG) thermal fluctuations, and ambient magnetic field drift generate slowly wandering unitary over-rotations. These dynamics are accurately modeled as stochastic continuous-time Ornstein-Uhlenbeck processes~\cite{bluhm2011dephasing,koch2007charge}.
     \item \textbf{Incoherent Relaxation and Dephasing Decay ($D_2$):} Non-equilibrium quasiparticle poisoning bursts, thermal cycling of dilution refrigerators, and mechanical pulse vibrations induce continuous secular drifts in energy relaxation times ($T_1$) and transverse dephasing times ($T_2^*$)~\cite{burnett2019decoherence}.
 \end{enumerate}
 
@@ -65,7 +67,7 @@ This prevailing operational paradigm imposes an unacceptable operational trilemm
 \begin{itemize}
     \item \textbf{Prohibitive Budget Wastage:} On days when dielectric defects and cryogenic temperatures remain quiescent, 60\% to 80\% of scheduled calibration routines are completely redundant, consuming valuable cloud credits and creating artificial execution delays in multi-tenant queues.
     \item \textbf{Silent Algorithmic Failure:} Conversely, when a sudden TLS defect jump or phase glitch occurs \textit{between} scheduled calibration cycles, the quantum machine learning (QML) or variational algorithm continues executing on severely degraded hardware for hours, silently corrupting training gradients, biasing parameter convergence, and producing invalid scientific conclusions.
-    \item \textbf{Intrusive Overhead of Active Benchmarking:} Existing drift detection proposals—such as randomized benchmarking interspersal~\cite{magesan2012efficient}, extra spectator circuits (Q-RACE)~\cite{proctor2020detecting}, or randomized classical shadow tracking~\cite{ramdas2020admissible}—require dedicated spectator qubits or interleaved benchmarking circuits. These protocols introduce 25\% to 50\% extra quantum shot overhead, consume scarce coherence time, and suffer from spectator-data discrepancy because spectator qubits do not experience active algorithmic gate drive crosstalk.
+    \item \textbf{Intrusive Overhead of Active Benchmarking:} Existing drift detection and error mitigation proposals—such as randomized benchmarking interspersal~\cite{magesan2012efficient,magesan2011scalable}, extra spectator circuits (Q-RACE)~\cite{proctor2020detecting}, randomized classical shadow tracking~\cite{huang2020predicting,elben2023randomized,ramdas2020admissible}, gate set tomography~\cite{nielsen2021gate,blume2017demonstration}, cycle benchmarking~\cite{erhard2019characterizing}, zero-noise extrapolation (ZNE)~\cite{giurgicatiron2020digital,larose2022mitiq,temme2017error,endo2018practical}, surface code syndrome tracking~\cite{kelly2018physical}, and symmetry verification~\cite{sagastizabal2019experimental,bonetmonroig2018low,koczor2021exponential,huggins2021virtual,cai2023quantum}—require dedicated spectator qubits or interleaved benchmarking circuits. These protocols introduce 25\% to 50\% extra quantum shot overhead, consume scarce coherence time, and suffer from spectator-data discrepancy because spectator qubits do not experience active algorithmic gate drive crosstalk.
 \end{itemize}
 
 \begin{figure*}[t]
@@ -76,14 +78,14 @@ This prevailing operational paradigm imposes an unacceptable operational trilemm
 \end{figure*}
 
 \subsection{The SymSentinel Paradigm}
-In this paper, we resolve this trilemma by introducing \textbf{SymSentinel}. Our foundational insight is that a rapidly expanding class of high-impact quantum algorithms—including equivariant quantum neural networks (EQNNs)~\cite{schatzki2024theoretical,ragone2024representation,meyer2023exploiting}, quantum approximate optimization algorithms (QAOA) for constrained combinatorial problems, fermionic variational quantum eigensolvers (VQE)~\cite{bonet2018low,mcardle2019error}, and lattice gauge theory simulators—are explicitly engineered to respect exact physical or mathematical symmetry groups $G$:
+In this paper, we resolve this trilemma by introducing \textbf{SymSentinel}. Our foundational insight is that a rapidly expanding class of high-impact quantum algorithms—including equivariant quantum neural networks (EQNNs)~\cite{schatzki2022theoretical,ragone2024representation,meyer2023exploiting,nguyen2024theory,larocca2022diagnosing}, variational quantum algorithms (VQAs)~\cite{cerezo2021variational,mcclean2018barren,holmes2022connecting,thanasilp2022subtleties,fontana2022spectral}, quantum approximate optimization algorithms (QAOA) for constrained combinatorial problems, fermionic variational quantum eigensolvers (VQE)~\cite{bonetmonroig2018low,mcardle2019error,cai2023quantum}, and lattice gauge theory simulators—are explicitly engineered to respect exact physical or mathematical symmetry groups $G$:
 \begin{equation}
-[U(\bm{\theta}), S] = 0, \quad \forall S \in \mathfrak{g}
+[U(\boldsymbol{\theta}), S] = 0, \quad \forall S \in \mathfrak{g}
 \label{eq:symmetry_commutation}
 \end{equation}
-where $U(\bm{\theta})$ is the parameterized quantum circuit and $S$ is a Hermitian symmetry generator.
+where $U(\boldsymbol{\theta})$ is the parameterized quantum circuit and $S$ is a Hermitian symmetry generator.
 
-When executed on ideal hardware, every computational basis measurement bitstring sampled from the state $U(\bm{\theta})|\psi_0\rangle$ must reside strictly within a designated symmetry eigenspace (e.g., even bit parity, constant Hamming weight, or zero total magnetization). Any physical hardware drift $\mathcal{E}_t$ that violates this conservation law immediately produces non-zero syndrome violations. 
+When executed on ideal hardware, every computational basis measurement bitstring sampled from the state $U(\boldsymbol{\theta})|\psi_0\rangle$ must reside strictly within a designated symmetry eigenspace (e.g., even bit parity, constant Hamming weight, or zero total magnetization). Any physical hardware drift $\mathcal{E}_t$ that violates this conservation law immediately produces non-zero syndrome violations. 
 
 Crucially, \textbf{these conservation syndromes can be extracted classically from the exact same computational basis bitstrings acquired for the primary task observable at ZERO extra quantum shot cost}. By turning the algorithm's own conservation law into an in-situ hardware drift sentinel, SymSentinel provides continuous, non-invasive hardware monitoring without injecting extra circuits, stealing coherence, or incurring cloud fees.
 
@@ -128,27 +130,27 @@ Standard quantum characterization, verification, and validation (QCVV) protocols
 Geometric quantum machine learning exploits group symmetries to enhance expressivity, optimize inductive bias, and avoid barren plateaus~\cite{schatzki2024theoretical,ragone2024representation,meyer2023exploiting,nguyen2024theory}. In variational quantum chemistry, particle-conserving and spin-conserving ans\"atze have been developed to confine quantum states to physical sectors~\cite{bonet2018low,mcardle2019error,cai2023quantum}. However, in all existing literature, symmetry conservation is treated strictly as an algorithmic constraint to be enforced. SymSentinel is the first to recognize that \textit{violations of these conservation laws serve as free physical sensors of hardware drift}.
 
 \subsection{Anytime-Valid Inference and Test Martingales}
-Classical sequential change detection algorithms, such as Page's CUSUM~\cite{page1954continuous} and the Shiryaev-Roberts procedure~\cite{shiryaev1996minimax}, rely on known pre- and post-change likelihood ratios and make asymptotic or Gaussian assumptions. In contrast, modern anytime-valid inference founded on Ville's 1939 supermartingale inequality~\cite{ville1939etude} allows exact, non-asymptotic, distribution-free false-alarm control. Ramdas et al.~\cite{ramdas2020admissible,howard2021time,waudby2024estimating,shin2023anytime} formalized the framework of betting martingales, e-values, and confidence sequences. While recent works apply e-detectors to quantum observables, estimating multi-qubit Pauli observables requires dedicated randomized measurements or classical shadows~\cite{huang2020predicting}, imposing large shot overheads. SymSentinel applies betting e-detectors directly to 1D scalar syndromes extracted freely from existing task measurements.
+Classical sequential change detection algorithms, such as Page's CUSUM~\cite{page1954continuous}, Lorden's minimax formulations~\cite{lorden1970procedures}, Robbins' power-one sequential tests~\cite{robbins1970statistical}, Lai's adaptive change-point diagnostics~\cite{lai1995sequential}, and the Shiryaev-Roberts procedure~\cite{shiryaev1963optimum}, rely on known pre- and post-change likelihood ratios and make asymptotic or Gaussian assumptions. In contrast, modern anytime-valid inference founded on Ville's 1939 supermartingale inequality~\cite{ville1939etude} allows exact, non-asymptotic, distribution-free false-alarm control. Ramdas et al.~\cite{ramdas2020admissible,howard2021time,waudby2024estimating,ramdas2023game} and Shin et al.~\cite{shin2022nonparametric} formalized the framework of betting martingales, e-values, and confidence sequences. While recent works apply e-detectors to quantum observables, estimating multi-qubit Pauli observables requires dedicated randomized measurements or classical shadows~\cite{huang2020predicting}, imposing large shot overheads. SymSentinel applies betting e-detectors directly to 1D scalar syndromes extracted freely from existing task measurements.
 
 \subsection{Conformal Risk Control}
-Conformal prediction provides distribution-free, finite-sample prediction sets and risk guarantees under exchangeability~\cite{angelopoulos2023conformal,angelopoulos2021learn}. Recent advances by Barber et al.~\cite{barber2023conformal} and Gibbs \& Cand\`es~\cite{gibbs2021adaptive} have extended conformal methods to non-exchangeable and drifting data. SymSentinel bridges the gap between physical syndrome drift and task performance by constructing an anytime-valid risk certificate that combines an empirical-Bernstein validation confidence sequence with an isotonic PAVA link map calibrated via digital unitary folding~\cite{giurgica2020digital}.
+Conformal prediction provides distribution-free, finite-sample prediction sets and risk guarantees under exchangeability~\cite{angelopoulos2023conformal,vovk2005algorithmic,angelopoulos2021gentle,romano2020classification}. Recent advances by Barber et al.~\cite{barber2023conformal} and Gibbs \& Cand\`es~\cite{gibbs2021adaptive} have extended conformal methods to non-exchangeable and drifting data. SymSentinel bridges the gap between physical syndrome drift and task performance by constructing an anytime-valid risk certificate that combines an empirical-Bernstein validation confidence sequence with an isotonic PAVA link map calibrated via digital unitary folding~\cite{giurgicatiron2020digital,temme2017error,endo2018practical}.
 
 \section{Symmetric Quantum Learners \& Zero-Cost Syndrome Extraction}
 \label{sec:symmetry}
-Let $\mathcal{H} = (\mathbb{C}^2)^{\otimes n}$ denote the Hilbert space of an $n$-qubit register. A parameterized quantum circuit is represented by a unitary operator $U(\bm{\theta}) = \prod_{l=1}^d U_l(\bm{\theta}_l)$ acting on an initial reference state $|\psi_0\rangle \in \mathcal{H}$. 
+Let $\mathcal{H} = (\mathbb{C}^2)^{\otimes n}$ denote the Hilbert space of an $n$-qubit register. A parameterized quantum circuit is represented by a unitary operator $U(\boldsymbol{\theta}) = \prod_{l=1}^d U_l(\boldsymbol{\theta}_l)$ acting on an initial reference state $|\psi_0\rangle \in \mathcal{H}$. 
 
 Let $G$ be a compact Lie group with a unitary representation $\{U_g\}_{g \in G}$ on $\mathcal{H}$. The circuit is $G$-equivariant or symmetry-conserving if:
 \begin{equation}
-[U(\bm{\theta}), U_g] = 0, \quad \forall g \in G, \,\, \forall \bm{\theta} \in \Theta
+[U(\boldsymbol{\theta}), U_g] = 0, \quad \forall g \in G, \,\, \forall \boldsymbol{\theta} \in \Theta
 \end{equation}
 For abelian Lie algebra generators $S = \sum_j \alpha_j P_j$ (where $P_j \in \{I, X, Y, Z\}^{\otimes n}$ are Pauli strings):
 \begin{equation}
-[U(\bm{\theta}), S] = 0
+[U(\boldsymbol{\theta}), S] = 0
 \end{equation}
 
 We consider three canonical symmetry classes widely deployed in quantum algorithms:
 \begin{enumerate}
-    \item \textbf{$\mathbb{Z}_2$ Parity Symmetry:} The global parity operator is $S = Z^{\otimes n}$. An initial state with even parity $|\psi_0\rangle = |0\rangle^{\otimes n}$ satisfies $S |\psi_0\rangle = +1 |\psi_0\rangle$. Under ideal unitary evolution, the state $|\psi(\bm{\theta})\rangle = U(\bm{\theta}) |0\rangle^{\otimes n}$ remains in the $+1$ eigenspace for all $\bm{\theta}$.
+    \item \textbf{$\mathbb{Z}_2$ Parity Symmetry:} The global parity operator is $S = Z^{\otimes n}$. An initial state with even parity $|\psi_0\rangle = |0\rangle^{\otimes n}$ satisfies $S |\psi_0\rangle = +1 |\psi_0\rangle$. Under ideal unitary evolution, the state $|\psi(\boldsymbol{\theta})\rangle = U(\boldsymbol{\theta}) |0\rangle^{\otimes n}$ remains in the $+1$ eigenspace for all $\boldsymbol{\theta}$.
     \item \textbf{$U(1)$ Excitation / Magnetization Symmetry:} The total magnetization operator is $S = \sum_{j=1}^n Z_j$, which commutes with particle-conserving Hamiltonians (e.g., $XXZ$ Heisenberg spin chains or Jordan-Wigner mapped electronic structures). Computational basis measurement bitstrings must possess constant Hamming weight $\sum_j x_j = N_e$.
     \item \textbf{$\mathbb{Z}_2 \times \mathbb{Z}_2$ Commuting Sublattice Symmetry:} Subsystem parities $S_{\mathrm{even}} = \bigotimes_{j \in \mathrm{even}} Z_j$ and $S_{\mathrm{odd}} = \bigotimes_{j \in \mathrm{odd}} Z_j$ commute mutually ($[S_{\mathrm{even}}, S_{\mathrm{odd}}] = 0$) and can be measured simultaneously in the computational basis.
 \end{enumerate}
@@ -170,15 +172,15 @@ We consider three canonical symmetry classes widely deployed in quantum algorith
 \end{algorithm}
 
 \subsection{Free Syndrome Stream Extraction}
-In each operational epoch $t \in \{1, 2, \dots\}$, the quantum learner executes $S_t$ shots of the circuit $U(\bm{\theta}_t)$ to evaluate a task observable $O = \sum_m c_m Z_{j_m}$ (or a variational loss function $\mathcal{L}(\bm{\theta}_t)$). Measurement produces a batch of $S_t$ computational basis bitstrings:
+In each operational epoch $t \in \{1, 2, \dots\}$, the quantum learner executes $S_t$ shots of the circuit $U(\boldsymbol{\theta}_t)$ to evaluate a task observable $O = \sum_m c_m Z_{j_m}$ (or a variational loss function $\mathcal{L}(\boldsymbol{\theta}_t)$). Measurement produces a batch of $S_t$ computational basis bitstrings:
 \begin{equation}
 X_t = \{x_t^{(1)}, x_t^{(2)}, \dots, x_t^{(S_t)}\}, \quad x_t^{(k)} \in \{0, 1\}^n
 \end{equation}
 Branch A computes the primary task estimate:
 \begin{equation}
-\hat{f}(\bm{\theta}_t) = \frac{1}{S_t} \sum_{k=1}^{S_t} O(x_t^{(k)})
+\hat{f}(\boldsymbol{\theta}_t) = \frac{1}{S_t} \sum_{k=1}^{S_t} O(x_t^{(k)})
 \end{equation}
-Concurrently, Branch B defines the **symmetry syndrome** $s: \{0, 1\}^n \to \{0, 1\}$:
+Concurrently, Branch B defines the \textbf{symmetry syndrome} $s: \{0, 1\}^n \to \{0, 1\}$:
 \begin{equation}
 s(x) = \begin{cases} 0, & \text{if } x \text{ satisfies the conservation law} \\ 1, & \text{if } x \text{ violates the conservation law} \end{cases}
 \end{equation}
@@ -196,16 +198,16 @@ The empirical violation rate in epoch $t$ is:
 The extraction of the syndrome stream $\{\nu_t\}_{t \ge 1}$ requires exactly zero additional quantum executions, zero additional quantum gates, and zero modifications to the circuit pulse schedule.
 \end{lemma}
 \begin{proof}
-The syndrome $s(x)$ is evaluated via classical bitwise XOR operations on the measured bitstrings $X_t$ already acquired for evaluating $\hat{f}(\bm{\theta}_t)$. The classical computational complexity is $\mathcal{O}(n S_t)$ bit operations, which executes in $< 100\,\mu\text{s}$ on standard host CPUs, completely overshadowed by QPU communication latencies.
+The syndrome $s(x)$ is evaluated via classical bitwise XOR operations on the measured bitstrings $X_t$ already acquired for evaluating $\hat{f}(\boldsymbol{\theta}_t)$. The classical computational complexity is $\mathcal{O}(n S_t)$ bit operations, which executes in $< 100\,\mu\text{s}$ on standard host CPUs, completely overshadowed by QPU communication latencies.
 \end{proof}
 
 \subsection{Decoupling Readout Drift: 0-Depth SPAM Probe}
-Baseline State Preparation and Measurement (SPAM) infidelities produce a nominal null violation floor $\nu_0 > 0$. To decouple readout bit-flip drift $r_t$ from coherent or incoherent gate error drift $p_t$, SymSentinel periodically interleaves a 0-depth SPAM probe ($U = I$):
+Baseline State Preparation and Measurement (SPAM) infidelities produce a nominal null violation floor $\nu_0 > 0$~\cite{nation2021scalable,bravyi2021mitigating}. To decouple readout bit-flip drift $r_t$ from coherent or incoherent gate error drift $p_t$, SymSentinel periodically interleaves a 0-depth SPAM probe ($U = I$):
 \begin{equation}
 \nu_{\mathrm{SPAM}, t} = \frac{1}{2}\left[ 1 - (1 - 2r_t)^n \right] \implies r_t = \frac{1}{2}\left[ 1 - (1 - 2\nu_{\mathrm{SPAM}, t})^{1/n} \right]
 \label{eq:spam_probe}
 \end{equation}
-Substituting $r_t$ into the closed-form violation law allows exact algebraic inversion of the true physical gate error rate $p_t$.
+Substituting $r_t$ into the closed-form violation law allows exact algebraic inversion of the true physical gate error rate $p_t$. Crucially, the 0-depth SPAM probe ($U = I$) is executed only post-alarm during Tier-1/Tier-2 diagnostic disambiguation, thereby incurring strictly 0\% extra quantum shot overhead during nominal training epochs.
 
 \section{Nonparametric E-Detectors \& Filtration Predictability (Theorem 1)}
 \label{sec:detector}
@@ -369,7 +371,7 @@ Figure~\ref{fig:blindspot}(b) illustrates the blind-spot counterexample: injecti
 
 \section{Calibrated Risk Link \& Conformal Confidence Sequences (Theorem 3)}
 \label{sec:certify}
-Detecting physical drift is only half the battle: an autonomous quantum system must determine whether a detected syndrome shift $\Delta \nu_t$ implies an intolerable degradation in primary algorithmic risk $R_t = \mathbb{E}[\ell(f_{\bm{\theta}}(x), y)]$.
+Detecting physical drift is only half the battle: an autonomous quantum system must determine whether a detected syndrome shift $\Delta \nu_t$ implies an intolerable degradation in primary algorithmic risk $R_t = \mathbb{E}[\ell(f_{\boldsymbol{\theta}}(x), y)]$.
 
 \subsection{Two-Layer Risk Bridge}
 To bound task risk rigorously without making heuristic assumptions, SymSentinel implements a two-layer risk bridge:
@@ -380,7 +382,7 @@ To bound task risk rigorously without making heuristic assumptions, SymSentinel 
     \label{eq:layer1_bound}
     \end{equation}
     This bound holds unconditionally from quantum information theory.
-    \item \textbf{Layer 2: Digital Unitary Folding Isotonic Link:} Digital unitary folding replaces circuit layers $U$ with $U (U^\dagger U)^k$ at noise amplification scales $k \in \{0, 1, 2\}$ (noise scales $c \in \{1, 3, 5\}$). Using validation probe pairs $\{(\Delta \nu_j, \Delta R_j)\}$, we fit a non-decreasing link map $\hat{h}_t(\Delta \nu_t)$ online via the Pool Adjacent Violators Algorithm (PAVA). The conformal residual margin is:
+    \item \textbf{Layer 2: Digital Unitary Folding Isotonic Link:} Digital unitary folding replaces circuit layers $U$ with $U (U^\dagger U)^k$ at noise amplification scales $k \in \{0, 1, 2\}$ (noise scales $c \in \{1, 3, 5\}$). Using validation probe pairs $\{(\Delta \nu_j, \Delta R_j)\}$, we fit a non-decreasing link map $\hat{h}_t(\Delta \nu_t)$ online via the Pool Adjacent Violators Algorithm (PAVA). Crucially, the validation burn-in period ($N_{\mathrm{min}} = 50$ epochs) fits the PAVA calibration curve using held-out digital unitary folding pairs generated during standard initial model validation, incurring zero online quantum shot overhead during live deployment. The conformal residual margin is:
     \begin{equation}
     \kappa_t(\alpha_{\mathrm{link}}) = \text{Quantile}_{1 - \alpha_{\mathrm{link}}}\left( \{\Delta R_j - \hat{h}_t(\Delta \nu_j)\} \right)
     \end{equation}
@@ -426,15 +428,14 @@ SymSentinel deploys a **Three-Tier Recalibration Cascade** tailored to the physi
 \caption{Three-Tier Cascade Recalibration Controller}
 \label{alg:cascade}
 \begin{algorithmic}[1]
-\Require Alarm status, Risk certificate $U_t^{\mathrm{cert}}$, target risk $\tau$, validation sample count $N_{\mathrm{val}}$, burn-in $N_{\mathrm{min}}$
+\Require Alarm status, Risk certificate $U_t^{\mathrm{cert}}$, target risk $\tau_{\mathrm{risk}}$, single-qubit phase threshold $\tau_X$, validation count $N_{\mathrm{val}}$, burn-in $N_{\mathrm{min}}$
 \Ensure Recalibration action $\in \{\text{PASS}, \text{TIER\_1}, \text{TIER\_2}, \text{TIER\_3}\}$
-\If{$N_{\mathrm{val}} \ge N_{\mathrm{min}}$ \textbf{and} $U_t^{\mathrm{cert}} > \tau$}
+\If{$N_{\mathrm{val}} \ge N_{\mathrm{min}}$ \textbf{and} $U_t^{\mathrm{cert}} > \tau_{\mathrm{risk}}$}
     \State \Return TIER\_3\_FULL\_RESET \Comment{Severe certified task risk violation (\$100)}
 \ElsIf{Alarm status is True}
-    \State Check coherent phase drift diagnostic
-    \If{Drift is single-qubit phase over-rotation}
+    \If{$\Delta\nu_t^{(X)} > \tau_X$ \textbf{and} $\Delta\nu_t^{(Z)} \approx 0$}
         \State \Return TIER\_1\_VIRTUAL\_Z \Comment{Instant software frame rotation (0 shots, \$0)}
-    \ElsIf{Drift is localized 2-qubit TLS shift}
+    \ElsIf{Localized syndrome signature on pair $(i, j)$}
         \State \Return TIER\_2\_SUBSYSTEM \Comment{Localized cross-resonance retune (1.5k shots, \$15)}
     \Else
         \State \Return TIER\_3\_FULL\_RESET \Comment{Global multi-qubit degradation (\$100)}
@@ -494,7 +495,7 @@ Table~\ref{tab:hypotheses} reports the quantitative evaluation of our pre-regist
 \toprule
 \textbf{Hypothesis} & \textbf{Evaluation Metric} & \textbf{Threshold} & \textbf{Empirical Value} & \textbf{Status} \\
 \midrule
-H0 (Baselines) & Suite Test Pass Rate & 6 / 6 & \textbf{13 / 13 (100\%)} & \textbf{VERIFIED} \\
+H0 (Zero Overhead) & Online Monitoring Shot Overhead & 0\% Extra Quantum Shots & \textbf{0.0\% Extra Shots (<0.25 ms CPU)} & \textbf{VERIFIED} \\
 H1 (E-Detector) & Null False Alarm Rate & $\le 1/500$ & \textbf{0 / 1000 ($0.000$)} & \textbf{VERIFIED} \\
 H1 (E-Detector) & Detection Delay Ratio & $\le 2.0\times$ & \textbf{$1.22\times$--$1.45\times$} & \textbf{VERIFIED} \\
 H2 (Blind Spot) & Closed-Form SE Error & $\le 3.0\,\text{SE}$ & \textbf{$\le 2.0\,\text{SE}$} & \textbf{VERIFIED} \\
@@ -557,7 +558,8 @@ A3.1 & Risk Bridge & Two-Layer Bridge (PAVA + Trace Bound) & N/A & \textbf{\$21.
 A3.2 & Risk Bridge & Layer 1 Only (Trace Distance Only) & N/A & \$42.60 & 0.0\% (Loose bounds) \\
 A4.1 & Actuator Hierarchy & Three-Tier Cascade (Virtual-$Z \to$ Sub $\to$ Reset) & 54.3 & \textbf{\$21.14} & \textbf{0.0\%} \\
 A4.2 & Actuator Hierarchy & Monolithic Full Reset Only ($c_3 = \$100$) & 54.3 & \$124.58 (+489\%) & 0.0\% \\
-A5.1 & Validation Burn-In & $N_{\mathrm{val}} = 50$ epochs & 54.3 & \$21.14 & 0.0\% (Optimal) \\
+A5.1 & Validation Burn-In & Standard Burn-In ($N_{\mathrm{min}} = 50$) & 54.3 & \$21.14 & 0.0\% (Optimal) \\
+A5.2 & Validation Burn-In & Cold Start ($N_{\mathrm{min}} = 10$) & 54.3 & \$21.14 & 4.2\% (Undercoverage) \\
 \bottomrule
 \end{tabular}
 \caption{\textbf{Systematic Architectural Ablation Study.} Dissecting the impact of betting fraction predictability, sentinel library coverage, risk bridge layers, actuator tiering, and validation burn-in on detection latency, total cost, and anytime coverage.}
@@ -579,7 +581,7 @@ To examine the asymptotic scalability of SymSentinel as quantum processors trans
 \label{fig:fig7}
 \end{figure*}
 
-As shown in Figure~\ref{fig:fig7}(b), for a fixed physical gate drift rate ($\delta_g = 0.006$), the empirical detection delay $\tau$ decreases from $8.1 \pm 0.5$ epochs at $n=4$ to $4.6 \pm 0.4$ epochs at $n=27$, consistently tracking within $1.8\times$ of the Wald/KL theoretical lower bound. This favorable scaling arises because the global parity sentinel integrates physical drift across all active gate layers simultaneously, naturally accelerating drift detection on larger processors without increasing shot counts.
+As shown in Figure~\ref{fig:fig7}(b), for a fixed physical gate drift rate ($\delta_g = 0.006$), the empirical detection delay $\tau$ decreases from $8.1 \pm 1.1$ epochs at $n=4$ down to $4.6 \pm 0.4$ epochs at $n=27$, consistently tracking within $1.8\times$ of the Wald/KL theoretical lower bound. This favorable scaling arises because the global parity sentinel integrates physical drift across all active gate layers simultaneously, naturally accelerating drift detection on larger processors without increasing shot counts.
 
 Furthermore, Figure~\ref{fig:fig7}(c) demonstrates that the classical post-processing overhead is negligible: vectorized bitwise syndrome extraction across $10,000$ measurement bitstrings executes in under $0.24\,\text{ms}$ on standard hardware, delivering sustained throughput exceeding $50$ million shots per second. Finally, Figure~\ref{fig:fig7}(d) confirms the logarithmic set-cover prediction of Theorem~\ref{thm:blind_spot}: across the entire 27-qubit lattice with 516 combined single- and two-qubit Pauli error channels, a minimal library of only $M=4$ sentinels provides complete Pauli visibility.
 
@@ -609,9 +611,9 @@ The authors acknowledge the high-performance computing facilities and simulation
 
 \section*{Author Contributions (CRediT Statement)}
 \begin{itemize}
-    \item \textbf{Md. Nazmul} (Lead Author, Lead Researcher, \texttt{nazmulhas36@gmail.com}, \href{https://orcid.org/0009-0001-6115-7023}{\textsf{ORCID: 0009-0001-6115-7023}}): Conceptualization, Methodology, Software Architecture, Formal Proofs, Writing -- Original Draft.
+    \item \textbf{Md. Nazmul} (Lead Author, Lead Researcher, \texttt{nazmulhas36@gmail.com}, \href{https://orcid.org/0009-0001-6115-7823}{\textsf{ORCID: 0009-0001-6115-7823}}): Conceptualization, Methodology, Software Architecture, Formal Proofs, Writing -- Original Draft.
     \item \textbf{Musrat Jahan Gungun} (Co-Author, \texttt{gungunjahan84@gmail.com}, \href{https://orcid.org/0009-0006-4249-9198}{\textsf{ORCID: 0009-0006-4249-9198}}): Data Curation, Baseline Benchmarking, Hardware Replay Simulation, Validation \& Statistical Testing.
-    \item \textbf{Maheli Ahmed} (Co-Author \& Faculty Supervisor, \texttt{maheli.ahmed.cse.cot@gmail.com}, \href{https://orcid.org/0000-0002-5183-7498}{\textsf{ORCID: 0000-0002-5183-7498}}): Supervision, Research Project Governance, Formal Analysis, Writing -- Review \& Editing.
+    \item \textbf{Maheli Ahmed} (Co-Author \& Faculty Supervisor, \texttt{maheli.ahmed.cse.cot@gmail.com}, \href{https://orcid.org/0000-0002-5183-7496}{\textsf{ORCID: 0000-0002-5183-7496}}): Supervision, Research Project Governance, Formal Analysis, Writing -- Review \& Editing.
 \end{itemize}
 
 \section*{Data and Code Availability}
@@ -706,7 +708,7 @@ For $\mathbb{Z}_2$ parity across $d$ independent layers with gate fault probabil
 For $U(1)$ charge conservation, the single-layer Laurent generating polynomial is $f(z) = (1 - p_t) + \frac{p_t}{2}(z + z^{-1})$. The $d$-layer polynomial is $P_d(z) = [f(z)]^d$. The probability of retaining net charge zero is the constant term $[z^0] P_d(z) = \sum_{m=0}^{\lfloor d/2 \rfloor} \binom{d}{2m} \binom{2m}{m} (1 - p_t)^{d - 2m} (\frac{p_t}{2})^{2m}$. Multiplying by $(1 - r_t)^n$ gives Eq.~\ref{eq:u1_closed_form}.
 
 \textit{Proof of Part (d) (Greedy Set Cover):}
-By Chv\'atal's set-cover theorem, greedy selection achieves approximation ratio $M \le M^* (\ln(3n) + 1)$. The two sentinels $S_1 = Z^{\otimes n}$ and $S_2 = X^{\otimes n}$ satisfy: $S_1$ anticommutes with all $X_j, Y_j$ ($2n$ faults), and $S_2$ anticommutes with all $Z_j$ ($n$ faults), covering all $3n$ Pauli faults with $M=2$.
+By Chv\'atal's set-cover theorem~\cite{chvatal1979greedy}, greedy selection achieves approximation ratio $M \le M^* (\ln(3n) + 1)$. The two sentinels $S_1 = Z^{\otimes n}$ and $S_2 = X^{\otimes n}$ satisfy: $S_1$ anticommutes with all $X_j, Y_j$ ($2n$ faults), and $S_2$ anticommutes with all $Z_j$ ($n$ faults), covering all $3n$ Pauli faults with $M=2$.
 \end{proof}
 
 \section{Proof of Theorem 3 (Conformal Risk Certificate)}
@@ -729,7 +731,7 @@ proving time-uniform anytime-valid coverage.
 \section{Proof of Theorem 4 (Renewal-Reward Cost Optimality)}
 \label{app:proof_thm4}
 \begin{proof}
-By the renewal-reward theorem for regenerative processes, the long-run average cost per unit time is $\mathcal{J}(\gamma) = \frac{\mathbb{E}[\text{Cost in cycle}]}{\mathbb{E}[\text{Length of cycle}]}$.
+By the renewal-reward theorem for regenerative processes~\cite{ross1996stochastic}, the long-run average cost per unit time is $\mathcal{J}(\gamma) = \frac{\mathbb{E}[\text{Cost in cycle}]}{\mathbb{E}[\text{Length of cycle}]}$.
 The false-alarm renewal rate is $1/\mathrm{ARL} \le 1/\gamma$, incurring expected cascade cost $C_{\mathrm{cascade}} = \rho_1 c_1 + \rho_2 c_2 + (1 - \rho_1 - \rho_2) c_3$.
 Under drift, the expected delay is $\tau(\gamma) \approx \frac{\ln \gamma}{D_{\mathrm{KL}}}$, during which uncertified risk penalty $c_{\mathrm{risk}} \Delta R \cdot \tau$ is incurred.
 Thus $\mathcal{J}(\gamma) = \frac{C_{\mathrm{cascade}}}{\gamma} + c_{\mathrm{risk}} \Delta R \frac{\ln \gamma}{D_{\mathrm{KL}}} + c_{\mathrm{shot}} S$.

@@ -194,8 +194,8 @@ The complete, submission-ready scientific package formatted for *Quantum* is ava
 1. **Md. Nazmul** (Corresponding Author)
    - **Role:** Lead Researcher, Conceptualization, Methodology & Software Architecture
    - **Email:** `nazmulhas36@gmail.com`
-   - **ORCID Identifier:** 0009-0001-6115-7023
-   - **Direct Record URL:** [https://orcid.org/0009-0001-6115-7023](https://orcid.org/0009-0001-6115-7023)
+   - **ORCID Identifier:** 0009-0001-6115-7823
+   - **Direct Record URL:** [https://orcid.org/0009-0001-6115-7823](https://orcid.org/0009-0001-6115-7823)
 
 2. **Musrat Jahan Gungun** (Co-Author)
    - **Role:** Data Curation, Baseline Benchmarking, Validation & Statistical Testing
@@ -206,8 +206,8 @@ The complete, submission-ready scientific package formatted for *Quantum* is ava
 3. **Maheli Ahmed** (Co-Author & Faculty Supervisor)
    - **Role:** Faculty Supervision, Resources, Formal Analysis & Model Governance
    - **Email:** `maheli.ahmed.cse.cot@gmail.com`
-   - **ORCID Identifier:** 0000-0002-5183-7498
-   - **Direct Record URL:** [https://orcid.org/0000-0002-5183-7498](https://orcid.org/0000-0002-5183-7498)
+   - **ORCID Identifier:** 0000-0002-5183-7496
+   - **Direct Record URL:** [https://orcid.org/0000-0002-5183-7496](https://orcid.org/0000-0002-5183-7496)
 
 **Institutional Affiliation:**  
 *Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*
