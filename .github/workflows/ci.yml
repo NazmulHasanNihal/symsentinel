@@ -40,3 +40,4 @@ jobs:
         python -m symsentinel.cli --help
         python -m symsentinel.cli simulate --epochs 5 --shots 512
         python -m symsentinel.cli bundle
+
