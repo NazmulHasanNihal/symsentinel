@@ -3,46 +3,70 @@
     "10.0": {
       "gamma": 10.0,
       "false_alarm_rate": 0.0,
-      "mean_run_length": 200.0,
+      "mean_run_length": 3000.0,
       "pass_threshold": true
     },
     "20.0": {
       "gamma": 20.0,
       "false_alarm_rate": 0.0,
-      "mean_run_length": 200.0,
+      "mean_run_length": 3000.0,
       "pass_threshold": true
     },
     "50.0": {
       "gamma": 50.0,
       "false_alarm_rate": 0.0,
-      "mean_run_length": 200.0,
+      "mean_run_length": 3000.0,
       "pass_threshold": true
     },
     "100.0": {
       "gamma": 100.0,
       "false_alarm_rate": 0.0,
-      "mean_run_length": 200.0,
+      "mean_run_length": 3000.0,
       "pass_threshold": true
     }
   },
   "detection_delays": {
+    "0.03": {
+      "delta": 0.03,
+      "theoretical_delay": 484.21873691887475,
+      "empirical_delay": 693.86,
+      "ratio": 1.4329474410988112
+    },
     "0.04": {
       "delta": 0.04,
-      "theoretical_delay": 1222.5071891962955,
-      "empirical_delay": 200.0,
-      "ratio": 0.16359821992661217
+      "theoretical_delay": 284.4077688079184,
+      "empirical_delay": 412.738,
+      "ratio": 1.451219148232032
+    },
+    "0.06": {
+      "delta": 0.06,
+      "theoretical_delay": 136.4679252984479,
+      "empirical_delay": 175.86,
+      "ratio": 1.2886544557294601
     },
     "0.08": {
       "delta": 0.08,
-      "theoretical_delay": 305.62679729907387,
-      "empirical_delay": 200.0,
-      "ratio": 0.6543928797064487
+      "theoretical_delay": 82.04117266984184,
+      "empirical_delay": 115.012,
+      "ratio": 1.4018814731335278
+    },
+    "0.1": {
+      "delta": 0.1,
+      "theoretical_delay": 55.68711784467325,
+      "empirical_delay": 70.67,
+      "ratio": 1.269054724597494
     },
     "0.12": {
       "delta": 0.12,
-      "theoretical_delay": 135.83413213292175,
-      "empirical_delay": 200.0,
-      "ratio": 1.472383979339509
+      "theoretical_delay": 40.76650045482507,
+      "empirical_delay": 54.304,
+      "ratio": 1.3320741146318495
+    },
+    "0.15": {
+      "delta": 0.15,
+      "theoretical_delay": 27.987268002132854,
+      "empirical_delay": 34.056,
+      "ratio": 1.2168390282825983
     }
   },
   "gate_status": "PASSED"

@@ -248,5 +248,62 @@ def test_8_universal_and_u1_sentinels():
     assert spec.evaluate_bitstring([1, 0, 1, 1]) == 1  # spectator is 1 -> Violated (drift detected)
 
 
+# ---------------------------------------------------------------------------
+# Unit Test 9: Symmetry Laws, Inversion & 0-Depth SPAM Decoupling
+# ---------------------------------------------------------------------------
+def test_9_symmetry_laws_and_spam_decoupling():
+    """Unit Test 9: Verifies exact Z2, U(1) laws, algebraic inversion, and SPAM decoupling."""
+    p_true = 0.025
+    r_true = 0.012
+    depth = 6
+    num_qubits = 6
+
+    # Forward Z2 law
+    nu_z2 = ss.z2_parity_violation_rate(p_gate=p_true, r_readout=r_true, depth=depth, num_qubits=num_qubits)
+    assert 0.0 < nu_z2 < 0.5
+
+    # Algebraic inversion: recover p_true from nu_z2 and r_true
+    p_recovered = ss.invert_gate_error_from_violation(nu_z2, r_readout=r_true, depth=depth, num_qubits=num_qubits)
+    assert np.isclose(p_recovered, p_true, atol=1e-5), f"Recovered {p_recovered} != {p_true}"
+
+    # Forward U(1) law
+    nu_u1 = ss.u1_charge_leakage_rate(p_gate=p_true, r_readout=r_true, depth=depth, num_qubits=num_qubits)
+    assert 0.0 < nu_u1 < 1.0
+
+    # 0-depth SPAM probe
+    rng = np.random.default_rng(42)
+    spam_shots = rng.binomial(1, r_true, size=(5000, num_qubits))
+    r_est = ss.zero_depth_spam_probe(spam_shots)
+    assert np.isclose(r_est, r_true, atol=0.003)
+
+
+# ---------------------------------------------------------------------------
+# Unit Test 10: Two-Layer Risk Bridge, Optimal Threshold & Benchmark Harness
+# ---------------------------------------------------------------------------
+def test_10_two_layer_bridge_and_benchmarks():
+    """Unit Test 10: Verifies Two-Layer Risk Bridge, renewal-reward solver, and D1-D4 benchmarks."""
+    # 1. Two-Layer Bridge
+    bridge = ss.TwoLayerRiskBridge(alpha=0.05, observable_norm=1.0, risk_target=0.15)
+    l1_bound = bridge.layer1_trace_distance_bound(0.01)
+    l2_bound = bridge.layer2_isotonic_link_bound(0.01)
+    assert l1_bound > 0.0
+    assert l2_bound > 0.0
+
+    cert = bridge.compute_certificate(0.01)
+    assert 0.0 < cert <= 1.0
+
+    # 2. Renewal-Reward Optimal Gamma Solver
+    gamma_star = ss.solve_optimal_gamma(cost_calibration=100.0, cost_risk_penalty=20.0, nu_0=0.05, delta_violation=0.05)
+    assert gamma_star >= 10.0
+
+    # 3. Benchmark Harness across B1, B2 and Regimes D1-D4
+    harness = ss.BenchmarkHarness(num_qubits=8, seed=42)
+    for b in ["B1", "B2"]:
+        for r in ["D1", "D2", "D3", "D4"]:
+            bits, nu = harness.run_epoch(benchmark=b, regime=r, epoch=5, num_shots=128)
+            assert bits.shape == (128, 8)
+            assert 0.0 <= nu <= 1.0
+
+
 if __name__ == "__main__":
     pytest.main(["-v", __file__])

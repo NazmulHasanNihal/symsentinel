@@ -12,12 +12,27 @@ from symsentinel.sentinels.spectator import SpectatorSentinel
 from symsentinel.detect.edetector import EDetector
 from symsentinel.detect.martingale import BettingMartingale
 from symsentinel.certify.certificate import RiskCertificate
+from symsentinel.certify import TwoLayerRiskBridge
 from symsentinel.control.policy import ThreeTierController, RecalibrationAction
+from symsentinel.control import CostModel, solve_optimal_gamma
+from symsentinel.symmetry import (
+    z2_parity_violation_rate,
+    u1_charge_leakage_rate,
+    invert_gate_error_from_violation,
+    zero_depth_spam_probe,
+)
+from symsentinel.sim import (
+    BenchmarkCircuits,
+    DriftSimulator,
+    MultiDayIBMCalibrationReplay,
+    BenchmarkHarness,
+)
 
 __version__ = "0.1.0"
 __all__ = [
     "monitor",
     "wrap",
+    "SymSentinel",
     "SymSentinelConfig",
     "BaseSentinel",
     "Z2ParitySentinel",
@@ -26,6 +41,17 @@ __all__ = [
     "EDetector",
     "BettingMartingale",
     "RiskCertificate",
+    "TwoLayerRiskBridge",
     "ThreeTierController",
     "RecalibrationAction",
+    "CostModel",
+    "solve_optimal_gamma",
+    "z2_parity_violation_rate",
+    "u1_charge_leakage_rate",
+    "invert_gate_error_from_violation",
+    "zero_depth_spam_probe",
+    "BenchmarkCircuits",
+    "DriftSimulator",
+    "MultiDayIBMCalibrationReplay",
+    "BenchmarkHarness",
 ]

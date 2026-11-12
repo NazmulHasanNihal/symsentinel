@@ -30,7 +30,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e ".[dev]"
 
-    - name: Run Pre-Registered Research Gate Unit Tests (11/11 Passing)
+    - name: Run Pre-Registered Hypothesis Unit Tests (13/13 Passing)
       run: |
         python -m pytest -v tests/
 
