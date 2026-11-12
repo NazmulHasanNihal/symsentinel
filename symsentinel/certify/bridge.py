@@ -78,3 +78,4 @@ class TwoLayerRiskBridge:
     def reset_era(self) -> None:
         """Reset sequence after physical recalibration."""
         self.cs.reset()
+

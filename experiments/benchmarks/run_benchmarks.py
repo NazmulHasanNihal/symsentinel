@@ -38,3 +38,4 @@ def run_benchmark_suite(epochs: int = 50, shots: int = 1024):
 
 if __name__ == "__main__":
     run_benchmark_suite(epochs=20, shots=512)
+

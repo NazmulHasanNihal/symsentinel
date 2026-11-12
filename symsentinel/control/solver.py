@@ -19,3 +19,4 @@ def solve_optimal_gamma(
     delta_R = max(0.01, delta_violation * 1.5)
     gamma_star = (cost_calibration * dkl) / (max(cost_risk_penalty, 1e-4) * delta_R)
     return float(max(gamma_min, gamma_star))
+

@@ -97,3 +97,4 @@ def zero_depth_spam_probe(measured_bitstrings: Union[np.ndarray, Sequence[str]])
         arr = np.asarray(measured_bitstrings, dtype=np.float64)
     
     return float(np.mean(arr))
+

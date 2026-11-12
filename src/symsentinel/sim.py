@@ -1,2 +1,12 @@
-"""Re-export sim module in src/ layout."""
-from symsentinel.sim import *
+"""Simulation models, circuit benchmarks, and drift generators for SymSentinel."""
+
+from symsentinel.sim.circuits import BenchmarkCircuits
+from symsentinel.sim.drift import DriftSimulator
+from symsentinel.sim.harness import MultiDayIBMCalibrationReplay, BenchmarkHarness
+
+__all__ = [
+    "BenchmarkCircuits",
+    "DriftSimulator",
+    "MultiDayIBMCalibrationReplay",
+    "BenchmarkHarness",
+]

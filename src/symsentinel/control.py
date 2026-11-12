@@ -1,2 +1,12 @@
-"""Re-export control module in src/ layout."""
-from symsentinel.control import *
+"""Control and recalibration policies for SymSentinel."""
+
+from symsentinel.control.cost_model import CostModel
+from symsentinel.control.policy import ThreeTierController, RecalibrationAction
+from symsentinel.control.solver import solve_optimal_gamma
+
+__all__ = [
+    "CostModel",
+    "ThreeTierController",
+    "RecalibrationAction",
+    "solve_optimal_gamma",
+]

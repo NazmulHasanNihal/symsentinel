@@ -298,3 +298,4 @@ Additionally, SymSentinel deploys within-epoch sequential shot early-stopping, r
 Consequently:
 $$\mathcal{J}(\gamma^*, \text{cascade}) \le 0.15 \cdot \mathcal{J}_{\mathrm{periodic}}^*$$
 proving an asymptotic operational cost reduction exceeding $80\%-96\%$. This completes the proof of Theorem 4. $\blacksquare$
+
