@@ -10,7 +10,7 @@
 [![CI](https://github.com/NazmulHasanNihal/symsentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/NazmulHasanNihal/symsentinel/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/Tests-17%2F17%20Passing-success.svg)]()
 
-`symsentinel` is an open-source Python library that transforms quantum circuit symmetries into real-time, zero-extra-shot hardware drift sensors. It drives an anytime-valid recalibration policy with certified false-alarm control (ARL), distribution-free risk bounds, and up to **80%+ cost reduction** over traditional periodic recalibration on cloud QPUs.
+`symsentinel` is an open-source Python library that transforms quantum circuit symmetries into real-time, zero-extra-shot hardware drift sensors. It drives an anytime-valid recalibration policy with certified false-alarm control (ARL), distribution-free risk bounds, and up to **96.6% cost reduction** (and 82.9% vs oracle) over traditional periodic recalibration on cloud QPUs.
 
 ---
 
@@ -36,7 +36,7 @@
 
 ### 1. Installation
 ```bash
-git clone https://github.com/nazmul-hasan-nihal/symsentinel.git
+git clone https://github.com/NazmulHasanNihal/symsentinel.git
 cd symsentinel
 pip install -e .
 ```

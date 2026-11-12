@@ -371,7 +371,7 @@ Figure~\ref{fig:blindspot}(b) illustrates the blind-spot counterexample: injecti
 
 \section{Calibrated Risk Link \& Conformal Confidence Sequences (Theorem 3)}
 \label{sec:certify}
-Detecting physical drift is only half the battle: an autonomous quantum system must determine whether a detected syndrome shift $\Delta \nu_t$ implies an intolerable degradation in primary algorithmic risk $R_t = \mathbb{E}[\ell(f_{\boldsymbol{\theta}}(x), y)]$.
+Detecting physical drift is only half the battle: an autonomous quantum system must determine whether a detected syndrome shift $\Delta \nu_t$ implies an intolerable degradation in primary algorithmic risk $R_t = \mathbb{E}[\ell(f_{\bm{\theta}}(x), y)]$.
 
 \subsection{Two-Layer Risk Bridge}
 To bound task risk rigorously without making heuristic assumptions, SymSentinel implements a two-layer risk bridge:
@@ -583,7 +583,7 @@ To examine the asymptotic scalability of SymSentinel as quantum processors trans
 
 As shown in Figure~\ref{fig:fig7}(b), for a fixed physical gate drift rate ($\delta_g = 0.006$), the empirical detection delay $\tau$ decreases from $8.1 \pm 1.1$ epochs at $n=4$ down to $4.6 \pm 0.4$ epochs at $n=27$, consistently tracking within $1.8\times$ of the Wald/KL theoretical lower bound. This favorable scaling arises because the global parity sentinel integrates physical drift across all active gate layers simultaneously, naturally accelerating drift detection on larger processors without increasing shot counts.
 
-Furthermore, Figure~\ref{fig:fig7}(c) demonstrates that the classical post-processing overhead is negligible: vectorized bitwise syndrome extraction across $10,000$ measurement bitstrings executes in under $0.24\,\text{ms}$ on standard hardware, delivering sustained throughput exceeding $50$ million shots per second. Finally, Figure~\ref{fig:fig7}(d) confirms the logarithmic set-cover prediction of Theorem~\ref{thm:blind_spot}: across the entire 27-qubit lattice with 516 combined single- and two-qubit Pauli error channels, a minimal library of only $M=4$ sentinels provides complete Pauli visibility.
+Furthermore, Figure~\ref{fig:fig7}(c) demonstrates that the classical post-processing overhead is negligible: vectorized bitwise syndrome extraction across $10,000$ measurement bitstrings executes in under $0.24\,\text{ms}$ on standard hardware, delivering sustained throughput exceeding $50$ million shots per second. Finally, Figure~\ref{fig:fig7}(d) confirms the logarithmic set-cover prediction of Theorem~\ref{thm:blindspot}: across the entire 27-qubit lattice with 516 combined single- and two-qubit Pauli error channels, a minimal library of only $M=4$ sentinels provides complete Pauli visibility.
 
 \section{Discussion, Practical Considerations \& Conclusion}
 \label{sec:discussion}

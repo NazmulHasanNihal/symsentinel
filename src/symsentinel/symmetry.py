@@ -90,6 +90,8 @@ def zero_depth_spam_probe(measured_bitstrings: Union[np.ndarray, Sequence[str]])
     The empirical bit-flip fraction directly estimates physical readout noise:
         \hat{r}_t = \frac{1}{n \cdot K} \sum_{k=1}^K \sum_{j=1}^n x_j^{(k)}
     """
+    if len(measured_bitstrings) == 0:
+        return 0.0
     if isinstance(measured_bitstrings, (list, tuple)) and isinstance(measured_bitstrings[0], str):
         arr = np.array([[int(c) for c in b] for b in measured_bitstrings], dtype=np.float64)
     else:
