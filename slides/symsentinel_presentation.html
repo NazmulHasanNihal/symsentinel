@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SymSentinel: Anytime-Valid Recalibration of Symmetric Quantum Learners</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --bg: #0B1120;
+      --card-bg: #1E293B;
+      --card-border: #334155;
+      --accent: #38BDF8;
+      --accent-alt: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+    .slide-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide {
+      display: none;
+      width: 90vw;
+      max-width: 1500px;
+      height: 88vh;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px 60px;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+    }
+    .slide-header {
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slide-header h2 {
+      font-size: 2.2rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .slide-tag {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .slide-body {
+      flex: 1;
+      display: flex;
+      gap: 30px;
+      overflow: hidden;
+    }
+    .col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 1.25rem;
+      line-height: 1.6;
+    }
+    .col-wide { flex: 1.4; }
+    .col-narrow { flex: 0.8; }
+    ul { list-style: none; }
+    li {
+      margin-bottom: 18px;
+      position: relative;
+      padding-left: 32px;
+      color: #E2E8F0;
+    }
+    li strong { color: var(--accent-alt); }
+    li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+    .metric-card {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .metric-val {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--accent-alt);
+    }
+    .metric-lbl {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .img-box {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      padding: 12px;
+    }
+    .img-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .math-block {
+      background: rgba(15, 23, 42, 0.9);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      margin: 15px 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 1.15rem;
+    }
+    .slide-footer {
+      border-top: 1px solid var(--card-border);
+      padding-top: 14px;
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+    }
+    .btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--accent-alt);
+      transition: width 0.3s ease;
+      z-index: 200;
+    }
+    @media print {
+      @page {
+        size: 16in 9in;
+        margin: 0;
+      }
+      html, body {
+        overflow: visible !important;
+        height: auto !important;
+        width: 16in !important;
+        background: #0B1120 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .slide-container {
+        display: block !important;
+        height: auto !important;
+        width: 16in !important;
+      }
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        width: 16in !important;
+        height: 9in !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        max-width: none !important;
+        padding: 0.6in 0.8in !important;
+        background: #0B1120 !important;
+      }
+      .controls, .progress-bar { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="slide-container">
+
+    <!-- SLIDE 1: TITLE SLIDE -->
+    <div class="slide active">
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <span class="slide-tag" style="margin-bottom:20px; font-size:1.1rem; padding:8px 20px;">Regular Research Track &bull; Quantum</span>
+        <h1 style="font-size: 3.2rem; color: var(--accent); font-weight: 800; line-height: 1.2; max-width: 1200px; margin-bottom: 24px;">
+          SymSentinel: Anytime-Valid Recalibration of Symmetric Quantum Learners from Free Symmetry Syndromes under Hardware Drift
+        </h1>
+        <p style="font-size: 1.5rem; color: #E2E8F0; margin-bottom: 28px;">
+          <strong>Md. Nazmul</strong><sup>1,*</sup>, <strong>Musrat Jahan Gungun</strong><sup>1</sup>, <strong>Maheli Ahmed</strong><sup>1</sup>
+        </p>
+        <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 35px;">
+          <sup>1</sup> Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh<br>
+          <sup>*</sup> Corresponding Author: <code>nazmulhas36@gmail.com</code>
+        </p>
+        <div style="display:flex; gap:20px;">
+          <span class="metric-card" style="padding:10px 24px; font-size:1.05rem; border-color:var(--accent-alt); color:var(--accent-alt);">
+            &check; 0 Extra Shot Overhead
+          </span>
+          <span class="metric-card" style="padding:10px 24px; font-size:1.05rem; border-color:var(--accent); color:var(--accent);">
+            &check; Exact Ville Nonparametric ARL Control
+          </span>
+          <span class="metric-card" style="padding:10px 24px; font-size:1.05rem; border-color:var(--warning); color:var(--warning);">
+            &check; 96.6% Cloud Cost Reduction
+          </span>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel Research Suite &bull; arXiv:quant-ph</span>
+        <span>Slide 1 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: THE PROBLEM -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>1. The Problem: Silent Non-Stationary Hardware Drift</h2>
+        <span class="slide-tag">Motivation</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Non-Stationary Physics:</strong> Superconducting QPUs suffer continuous parameter drift due to Two-Level System (TLS) defect fluctuations, cryostat temperature variations, and ambient flux noise.</li>
+            <li><strong>Silent Degradation:</strong> Machine learning loss functions (\(\mathcal{L}(\theta)\)) drift silently during production deployment, corrupting quantum variational classifiers and chemistry solvers.</li>
+            <li><strong>Catastrophic Overfitting to Stale Calibration:</strong> Traditional calibration tables degrade over hours, yet re-characterization pauses computation.</li>
+          </ul>
+          <div class="math-block">
+            $$\Delta \mathcal{E}_t = \mathcal{E}_t - \mathcal{E}_0, \quad \|\mathcal{E}_t - \mathcal{E}_0\|_{\diamond} > \epsilon \implies \text{Generalization Risk Bounds Fail}$$
+          </div>
+        </div>
+        <div class="col col-narrow">
+          <div class="metric-card">
+            <div class="metric-val" style="color:var(--danger);">30% - 50%</div>
+            <div class="metric-lbl">Coherence (\(T_1, T_2\)) Fluctuations over 12-24h</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val" style="color:var(--warning);">$100 - $350</div>
+            <div class="metric-lbl">Typical Full QPU Recalibration Cost</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">10<sup>5</sup> Shots</div>
+            <div class="metric-lbl">Wasted by Standard Randomized Benchmarking</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Problem &amp; Motivation</span>
+        <span>Slide 2 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: THE OVERHEAD DILEMMA -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>2. Prior Art &amp; The Overhead Dilemma</h2>
+        <span class="slide-tag">Background</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Periodic Interleaved RB (Proctor et al., 2020):</strong> Burns millions of dedicated Clifford shots, completely halting quantum algorithm execution.</li>
+            <li><strong>Classical Drift Detectors (ADWIN, Page-Hinkley):</strong> Rely on asymptotic Gaussian approximations that fail catastrophically under small finite sample batches, inducing false alarms.</li>
+            <li><strong>Conformal Prediction without Drift Adaptation:</strong> Yields valid coverage only until hardware shifts, then silently breaches \(1-\alpha\) confidence.</li>
+            <li><strong>The Core Dilemma:</strong> <em>"How can we monitor drifting quantum hardware continuously, with exact non-asymptotic statistical safety, without spending a single extra quantum shot?"</em></li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="img-box">
+            <img src="../figures/fig1_sentinel_concept.png" alt="Concept Pipeline">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: The Overhead Dilemma</span>
+        <span>Slide 3 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: THE CORE INSIGHT -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>3. The Core Insight: Symmetries as Free Hardware Sentinels</h2>
+        <span class="slide-tag">Key Innovation</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Physical Invariance:</strong> Equivariant quantum circuits commute with symmetry operators: \([U(\theta), S] = 0\).</li>
+            <li><strong>Invariant Sector Confinement:</strong> Under ideal noise-free execution, states initialized in symmetry eigenspace \(S|\psi_0\rangle = \lambda_0|\psi_0\rangle\) remain confined to that eigenspace throughout the circuit.</li>
+            <li><strong>Free Dual-Use Computational Basis Bitstrings:</strong> Every computational basis measurement \(x \in \{0, 1\}^n\) gathered to evaluate the learning task observable contains a <em>free symmetry syndrome</em>:</li>
+          </ul>
+          <div class="math-block">
+            $$\text{Learning Observable:} \quad \hat{f}(\theta) = \frac{1}{K} \sum_{k=1}^K O(x^{(k)})$$
+            $$\text{Free Symmetry Sentinel:} \quad s(x^{(k)}) = \sum_{j \in S} x_j^{(k)} \pmod 2 \implies \nu_t = \frac{1}{K} \sum_{k=1}^K s(x^{(k)})$$
+          </div>
+        </div>
+        <div class="col col-narrow">
+          <div class="metric-card">
+            <div class="metric-val" style="color:var(--accent-alt);">0%</div>
+            <div class="metric-lbl">Extra Shot Overhead for Commuting Sentinels</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">&le; 5%</div>
+            <div class="metric-lbl">Foveated Split for Non-Commuting Sets</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Free Symmetry Syndromes</span>
+        <span>Slide 4 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: NONPARAMETRIC BETTING MARTINGALES -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>4. Nonparametric Betting Martingales &amp; E-Detectors</h2>
+        <span class="slide-tag">Anytime-Valid Inference</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Strict Filtration Predictability:</strong> To prevent lookahead bias, betting fractions \(\lambda_t\) are strictly measurable with respect to past filtration \(\mathcal{F}_{t-1}\).</li>
+            <li><strong>Test Supermartingale Construction (Theorem 1):</strong></li>
+          </ul>
+          <div class="math-block">
+            $$M_t = \prod_{i=1}^t \left[1 + \lambda_i (z_i - \nu_0)\right], \quad \mathbb{E}_{H_0}[M_t \mid \mathcal{F}_{t-1}] \le M_{t-1}$$
+          </div>
+          <ul>
+            <li><strong>Exact Finite-Sample False-Alarm Control (Ville's Maximal Inequality):</strong></li>
+          </ul>
+          <div class="math-block">
+            $$\mathbb{P}_{H_0}\left(\exists t \ge 1: M_t \ge \gamma\right) \le \frac{1}{\gamma} \implies \mathrm{ARL}(H_0) \ge \gamma$$
+          </div>
+        </div>
+        <div class="col col-narrow">
+          <div class="metric-card">
+            <div class="metric-val">ARL &ge; 500</div>
+            <div class="metric-lbl">Average Run Length under Null Hypothesis</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val" style="color:var(--accent-alt);">&le; 1 / 500</div>
+            <div class="metric-lbl">Max False-Alarm Probability Across Entire Run</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Martingale E-Detectors</span>
+        <span>Slide 5 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: DETECTION DELAY & INFORMATION THEORY -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>5. Detection Delay &amp; Information-Theoretic Optimality</h2>
+        <span class="slide-tag">Empirical vs Theory</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Wald/Kullback-Leibler Lower Bound:</strong> In sequential testing, the minimal expected detection delay is governed by relative entropy:</li>
+          </ul>
+          <div class="math-block">
+            $$\mathbb{E}_{H_1}[\tau] \ge \frac{\ln \gamma + \mathcal{O}(1)}{S_t D_{\mathrm{KL}}(\nu_1 \parallel \nu_0)}$$
+          </div>
+          <ul>
+            <li><strong>Strict Empirical Monotonicity:</strong> Empirical detection delay decreases smoothly as hardware drift shift \(\delta = \nu_1 - \nu_0\) increases (from \(693.9\) epochs at \(\delta=0.03\) down to \(34.1\) at \(\delta=0.15\)).</li>
+            <li><strong>Tight Tracking:</strong> Empirical delay tracks between \(1.22\times\) and \(1.45\times\) above the theoretical lower bound across the entire drift regime!</li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="img-box">
+            <img src="../figures/fig2_martingale_and_delay.png" alt="Figure 2: Martingale & Delay">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Detection Delay Tracking</span>
+        <span>Slide 6 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: THE BLIND-SPOT THEOREM -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>6. The Blind-Spot Theorem (Theorem 2)</h2>
+        <span class="slide-tag">Fundamental Limits</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Visibility Condition:</strong> A hardware noise channel \(\mathcal{E} = \sum_k E_k \rho E_k^\dagger\) is visible to sentinel \(\Pi\) if and only if at least one Kraus operator anticommutes with \(\Pi\):</li>
+          </ul>
+          <div class="math-block">
+            $$\exists k: \{E_k, \Pi\} = 0 \implies \Delta \nu_t = \frac{1}{2}\mathrm{Tr}\left(\Pi \mathcal{E}(\rho) - \Pi \rho\right) > 0$$
+          </div>
+          <ul>
+            <li><strong>Commuting Blind Spot:</strong> If all Kraus operators commute with \(\Pi\) (\([E_k, \Pi] = 0\)), the symmetry syndrome remains strictly invariant (\(\Delta \nu_t \equiv 0\)), even while the learning task risk degrades (\(\Delta R_t > 0\))!</li>
+            <li><strong>Exact Closed-Form Laws:</strong>
+              <br>&bull; \(\mathbb{Z}_2\) Parity: \(\nu_t = \frac{1}{2}[1 - (1-2p_t)^d (1-2r_t)^n]\)
+              <br>&bull; \(U(1)\) Charge-Walk: \(\nu_t = 1 - [z^0] P_d(z)\) via Laurent generating polynomials
+            </li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="img-box">
+            <img src="../figures/fig3_blind_spot_and_set_cover.png" alt="Figure 3: Blind Spot & Closed Form">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Blind-Spot Theorem</span>
+        <span>Slide 7 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: GREEDY MULTI-SENTINEL SET-COVER -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>7. Greedy Multi-Sentinel Set-Cover</h2>
+        <span class="slide-tag">Architectural Remedy</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Eliminating the Blind Spot:</strong> We construct a family of sentinels \(\mathcal{S} = \{S_1, \dots, S_M\}\) such that every plausible single- and two-qubit hardware fault anticommutes with at least one sentinel.</li>
+            <li><strong>Greedy Logarithmic Approximation (Theorem 2d):</strong></li>
+          </ul>
+          <div class="math-block">
+            $$|\mathcal{S}^*| \le \left(\ln |\mathcal{F}_{\mathrm{target}}| + 1\right) |\mathcal{S}_{\mathrm{OPT}}|$$
+          </div>
+          <ul>
+            <li><strong>Complete Pauli Coverage:</strong>
+              <br>&bull; \(M=2\) non-commuting sentinels (\(\{Z^{\otimes n}, X^{\otimes n}\}\)) cover <strong>100%</strong> of all single-qubit Pauli errors.
+              <br>&bull; Commuting sublattice parities (\(\mathbb{Z}_2 \times \mathbb{Z}_2\) on bipartite lattices) achieve 100% coverage at <strong>0% extra shot overhead</strong>!
+            </li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="metric-card">
+            <div class="metric-val" style="color:var(--accent-alt);">100%</div>
+            <div class="metric-lbl">Single-Qubit Pauli Faults Covered (M=2)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">M &le; 4</div>
+            <div class="metric-lbl">Sentinels to Cover All 516 Heavy-Hex Faults</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Multi-Sentinel Set-Cover</span>
+        <span>Slide 8 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: TWO-LAYER RISK CERTIFICATION -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>8. Two-Layer Risk Certification (Theorem 3)</h2>
+        <span class="slide-tag">Conformal Safety</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Layer 1 &bull; Trace Distance Sector Leakage Bound:</strong> Symmetry violation rate \(\nu_t\) provides a rigorous upper bound on state deviation in trace distance:</li>
+          </ul>
+          <div class="math-block">
+            $$\|\rho_t - \mathcal{P}_S(\rho_t)\|_{\mathrm{tr}} \le \sqrt{2 \nu_t}$$
+          </div>
+          <ul>
+            <li><strong>Layer 2 &bull; Digital Unitary Folding &amp; Isotonic Link:</strong> Empirical risk increases monotonically with synthetic gate noise scale factors \(\kappa \in \{1, 3, 5\}\). We fit a monotonic isotonic regression (PAVA) link function:</li>
+          </ul>
+          <div class="math-block">
+            $$\hat{R}_t = g(\nu_t) + W_t(\alpha_{\mathrm{stat}}) + \epsilon_{\mathrm{link}}(\alpha_{\mathrm{link}})$$
+          </div>
+          <ul>
+            <li><strong>Anytime Conformal Guarantee:</strong> \(\mathbb{P}(\forall t \ge 1: R_t \le \hat{R}_t) \ge 1 - \alpha\) holds uniformly across all epochs under physical drift!</li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="img-box">
+            <img src="../figures/fig4_risk_bridge_and_coverage.png" alt="Figure 4: Risk Bridge & Coverage">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Risk Certification</span>
+        <span>Slide 9 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: 3-TIER RECALIBRATION CASCADE -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>9. The 3-Tier Recalibration Cascade Controller</h2>
+        <span class="slide-tag">Renewal-Reward Optimization</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Why Full Resets Are Wasteful:</strong> Over 90% of physical drift events are coherent phase shifts or local frequency jumps that do NOT require an expensive $100 full QPU reset.</li>
+            <li><strong>Hierarchical Mitigation Cascade:</strong>
+              <br>&bull; <strong>Tier 1 &bull; Virtual-Z Software Update (\(c_1 = \$0\), 0 shots):</strong> Recalibrates single-qubit frame phases purely in compiler software.
+              <br>&bull; <strong>Tier 2 &bull; Subsystem Pulse Retuning (\(c_2 = \$15\), \(10^3\) shots):</strong> Local cross-resonance pulse tuning for drifting TLS defect pairs.
+              <br>&bull; <strong>Tier 3 &bull; Full QPU Recalibration (\(c_3 = \$100\), \(10^5\) shots):</strong> Deployed only if residual violation persists after Tier 1 and 2!
+            </li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="img-box">
+            <img src="../figures/fig5_cost_benchmark_cascade.png" alt="Figure 5: Cost Benchmark & Cascade">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: 3-Tier Cascade</span>
+        <span>Slide 10 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: HARDWARE REPLAY RESULTS -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>10. Experimental Validation: 14-Day IBM Calibration Replay</h2>
+        <span class="slide-tag">Benchmarking</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <div class="metric-card" style="display:flex; justify-content:space-around; align-items:center;">
+            <div>
+              <div class="metric-val" style="color:var(--danger);">$2,400</div>
+              <div class="metric-lbl">Periodic Baseline</div>
+            </div>
+            <div>
+              <div class="metric-val" style="color:var(--warning);">$1,100</div>
+              <div class="metric-lbl">Threshold Baseline</div>
+            </div>
+            <div>
+              <div class="metric-val" style="color:var(--accent-alt);">$80</div>
+              <div class="metric-lbl">SymSentinel Cascade</div>
+            </div>
+          </div>
+          <ul>
+            <li><strong>96.6% Cloud Cost Reduction:</strong> Compared to periodic calibration, SymSentinel reduces total operational budget by over 96%, even outperforming an omniscient single-tier oracle by 80%!</li>
+            <li><strong>Zero False Alarms:</strong> Zero spurious recalibrations during quiet operational windows across 14 simulated days.</li>
+            <li><strong>Instant Drift Arrest:</strong> Successfully arrests both diurnal thermal drift and abrupt TLS defect jumps within 1–2 epochs.</li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="img-box">
+            <img src="../figures/fig6_hardware_replay.png" alt="Figure 6: Hardware Replay">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: 14-Day Hardware Replay</span>
+        <span>Slide 11 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: SCALING TO 27 QUBITS -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>11. Scaling to Large Systems: 27-Qubit Heavy-Hex Lattice</h2>
+        <span class="slide-tag">Large-Scale Evaluation</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>Topology-Aware Benchmark:</strong> Evaluated across subgraphs of the IBM Falcon 27-qubit heavy-hexagonal lattice (\(n \in \{4, 8, 12, 16, 20, 27\}\)).</li>
+            <li><strong>Super-Linear Sensitivity:</strong> Because larger quantum processors execute more gates per epoch, global physical drift accumulates <em>faster</em> in global parity, reducing empirical detection delay from \(8.1\) epochs at \(n=4\) to \(4.6\) epochs at \(n=27\)!</li>
+            <li><strong>Sub-Millisecond Classical Throughput:</strong> Bitwise XOR syndrome extraction across \(10^4\) shots takes \(< 0.25\) ms (\(> 50\) million shots/second).</li>
+            <li><strong>Logarithmic Set-Cover:</strong> Only \(M=3\) sentinels needed for 100% single-qubit fault coverage, and \(M=4\) for all 516 Pauli errors on 27 qubits.</li>
+          </ul>
+        </div>
+        <div class="col col-narrow">
+          <div class="img-box">
+            <img src="../figures/fig7_scaling_heavyhex.png" alt="Figure 7: Heavy-Hex Scaling">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: 27-Qubit Scaling</span>
+        <span>Slide 12 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: THEORETICAL GUARANTEES -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>12. Summary of Four Core Theorems</h2>
+        <span class="slide-tag">Mathematical Foundations</span>
+      </div>
+      <div class="slide-body">
+        <div class="col">
+          <div class="metric-card" style="margin-bottom:12px;">
+            <strong style="color:var(--accent);">Theorem 1 &bull; Anytime-Valid ARL Control &amp; Optimal Delay</strong>
+            <p style="font-size:1.05rem; margin-top:4px;">Predictable betting martingale guarantees \(\mathbb{P}_{H_0}(\exists t \ge 1: M_t \ge \gamma) \le 1/\gamma\), \(\mathrm{ARL}(H_0) \ge \gamma\), and achieves information-theoretic Wald/KL delay \(\frac{\ln \gamma + \mathcal{O}(1)}{S_t D_{\mathrm{KL}}(\nu_1 \parallel \nu_0)}\).</p>
+          </div>
+          <div class="metric-card" style="margin-bottom:12px;">
+            <strong style="color:var(--accent);">Theorem 2 &bull; The Blind-Spot Theorem &amp; Set-Cover Bound</strong>
+            <p style="font-size:1.05rem; margin-top:4px;">Identifies necessary &amp; sufficient anticommutation visibility condition; proves commuting noise invariance \(\Delta \nu_t \equiv 0\); guarantees greedy set-cover achieves \(|\mathcal{S}^*| \le (\ln|\mathcal{F}| + 1)|\mathcal{S}_{\mathrm{OPT}}|\).</p>
+          </div>
+          <div class="metric-card" style="margin-bottom:12px;">
+            <strong style="color:var(--accent);">Theorem 3 &bull; Uniform Calibrated Risk Certification</strong>
+            <p style="font-size:1.05rem; margin-top:4px;">Combines trace-distance sector leakage bounds with empirical-Bernstein and isotonic PAVA link confidence sequences, certifying uniform anytime coverage \(\mathbb{P}(\forall t: R_t \le \hat{R}_t) \ge 1 - \alpha\).</p>
+          </div>
+          <div class="metric-card" style="margin-bottom:12px;">
+            <strong style="color:var(--accent);">Theorem 4 &bull; Optimal Renewal-Reward Cascade Policy</strong>
+            <p style="font-size:1.05rem; margin-top:4px;">Proves existence of unique optimal threshold \(\gamma^* = \max(\gamma_{\min}, \frac{C_{\mathrm{cascade}} D_{\mathrm{KL}}}{c_{\mathrm{risk}} \Delta R})\) achieving strictly lower cost than any periodic rule: \(\mathcal{J}(\gamma^*) \le 0.15 \mathcal{J}^*_{\mathrm{periodic}}\).</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Summary of Theorems</span>
+        <span>Slide 13 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: ARCHITECTURAL ABLATION STUDY -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>13. Systematic Architectural Ablation Study</h2>
+        <span class="slide-tag">Empirical Rigor</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <table style="width:100%; border-collapse:collapse; font-size:1.1rem; text-align:left;">
+            <thead>
+              <tr style="border-bottom:2px solid var(--accent); color:var(--accent);">
+                <th style="padding:10px;">Configuration</th>
+                <th style="padding:10px;">Ablation Description</th>
+                <th style="padding:10px;">Total Cost</th>
+                <th style="padding:10px;">Risk Breach</th>
+                <th style="padding:10px;">Cost Overhead</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:rgba(16, 185, 129, 0.1); font-weight:bold; color:var(--accent-alt); border-bottom:1px solid var(--card-border);">
+                <td style="padding:10px;">Full SymSentinel</td>
+                <td style="padding:10px;">Full 3-tier cascade + 2-layer risk bridge</td>
+                <td style="padding:10px;">$80</td>
+                <td style="padding:10px;">0.0%</td>
+                <td style="padding:10px;">Baseline (0%)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--card-border);">
+                <td style="padding:10px;">A1 &bull; Single-Tier Only</td>
+                <td style="padding:10px;">No cascade (Tier 3 full reset directly)</td>
+                <td style="padding:10px;">$410</td>
+                <td style="padding:10px;">0.0%</td>
+                <td style="padding:10px;">+412.5%</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--card-border);">
+                <td style="padding:10px;">A2 &bull; No Predictable Bet</td>
+                <td style="padding:10px;">Fixed heuristic betting (&lambda;=0.5)</td>
+                <td style="padding:10px;">$145</td>
+                <td style="padding:10px;">0.0%</td>
+                <td style="padding:10px;">+81.3%</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--card-border);">
+                <td style="padding:10px;">A3 &bull; No Risk Bridge</td>
+                <td style="padding:10px;">Heuristic uncalibrated risk bounds</td>
+                <td style="padding:10px;">$80</td>
+                <td style="padding:10px; color:var(--danger); font-weight:bold;">14.2%</td>
+                <td style="padding:10px; color:var(--danger);">Coverage Violated</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--card-border);">
+                <td style="padding:10px;">A4 &bull; Single Sentinel</td>
+                <td style="padding:10px;">Z<sup>&otimes;n</sup> only (blind to Z-phase drift)</td>
+                <td style="padding:10px;">$80</td>
+                <td style="padding:10px; color:var(--danger); font-weight:bold;">22.8%</td>
+                <td style="padding:10px; color:var(--danger);">Blind Spot Failure</td>
+              </tr>
+              <tr>
+                <td style="padding:10px;">A5 &bull; Naive Asymptotic</td>
+                <td style="padding:10px;">Gaussian SPRT instead of martingale</td>
+                <td style="padding:10px;">$230</td>
+                <td style="padding:10px;">1.8%</td>
+                <td style="padding:10px;">+187.5%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col col-narrow">
+          <div class="metric-card">
+            <strong style="color:var(--accent);">Key Takeaways:</strong>
+            <p style="font-size:1rem; margin-top:10px; line-height:1.5;">
+              &bull; Removing the cascade quadruples operational costs (+412.5%).<br><br>
+              &bull; Omitting the multi-sentinel set-cover causes a 22.8% risk breach due to the blind spot.<br><br>
+              &bull; Every component of SymSentinel is mathematically necessary.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel: Ablation Study</span>
+        <span>Slide 14 of 15</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: CONCLUSION & OPEN SOURCE -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>14. Conclusion &amp; Open Science Impact</h2>
+        <span class="slide-tag">Summary &bull; Q&amp;A</span>
+      </div>
+      <div class="slide-body">
+        <div class="col col-wide">
+          <ul>
+            <li><strong>First Zero-Shot Hardware Drift Monitor:</strong> Turns physical symmetries into free, continuous drift detectors without extra calibration shots.</li>
+            <li><strong>Complete Theoretical Rigor:</strong> Non-asymptotic false-alarm control via Ville's inequality, Wald/KL delay optimality, and the Blind-Spot Theorem.</li>
+            <li><strong>Practical Cost Breakthrough:</strong> 96.6% cloud cost reduction verified on multi-day IBM hardware calibration logs and 27-qubit heavy-hex architectures.</li>
+            <li><strong>Open Source Ecosystem:</strong> Production-grade Apache-2.0 Python library with 17/17 passing tests, full Qiskit/PennyLane/Cirq adapters, CLI tools, and reproducible benchmarks.</li>
+          </ul>
+          <div class="math-block" style="text-align:center; font-size:1.3rem; margin-top:25px;">
+            <strong>Repository:</strong> <a href="https://github.com/NazmulHasanNihal/symsentinel" style="color:var(--accent); text-decoration:none;">https://github.com/NazmulHasanNihal/symsentinel</a>
+          </div>
+        </div>
+        <div class="col col-narrow">
+          <div class="metric-card" style="text-align:center; padding:30px;">
+            <div style="font-size:3rem; margin-bottom:10px;">🚀</div>
+            <div style="font-size:1.4rem; font-weight:bold; color:var(--accent-alt); margin-bottom:10px;">Thank You!</div>
+            <p style="font-size:1.05rem; color:var(--text-muted);">Questions &amp; Discussion Welcome</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>SymSentinel Research Presentation &bull; College of Technology, National University, Bangladesh</span>
+        <span>Slide 15 of 15</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="prevBtn">&larr; Prev</button>
+    <button class="btn" id="nextBtn">Next &rarr;</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const progressBar = document.getElementById('progressBar');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.remove('active');
+        if (i === index) s.classList.add('active');
+      });
+      currentSlide = index;
+      progressBar.style.width = ((index + 1) / totalSlides * 100) + '%';
+      prevBtn.disabled = (index === 0);
+      nextBtn.disabled = (index === totalSlides - 1);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentSlide > 0) updateSlide(currentSlide - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentSlide < totalSlides - 1) updateSlide(currentSlide + 1);
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
+        if (currentSlide < totalSlides - 1) updateSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (currentSlide > 0) updateSlide(currentSlide - 1);
+      } else if (e.key === 'Home') {
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+</html>

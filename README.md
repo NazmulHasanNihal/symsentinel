@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)]()
 [![CI](https://github.com/NazmulHasanNihal/symsentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/NazmulHasanNihal/symsentinel/actions/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/Tests-13%2F13%20Passing-success.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-17%2F17%20Passing-success.svg)]()
 
 `symsentinel` is an open-source Python library that transforms quantum circuit symmetries into real-time, zero-extra-shot hardware drift sensors. It drives an anytime-valid recalibration policy with certified false-alarm control (ARL), distribution-free risk bounds, and up to **80%+ cost reduction** over traditional periodic recalibration on cloud QPUs.
 
@@ -168,15 +168,22 @@ All experiments were executed with pre-registered parameters and strict threshol
 - `figures/fig4_certificate_validity.png`: Time-uniform risk certificate tracking across D1, D2, and D3 non-stationary drift.
 - `figures/fig5_cost_vs_risk_benchmarks.png`: Comprehensive operational cloud cost comparison across all 6 baselines.
 - `figures/fig6_hardware_replay_and_blindspot.png`: Multi-sentinel greedy set-cover coverage and 3-tier cascade efficiency.
+- `figures/fig7_scaling_heavyhex.png`: Large-scale multi-qubit benchmarks and syndrome extraction throughput on the IBM Falcon 27-qubit heavy-hex lattice.
+
+### Presentation Slides & Talks (`slides/`)
+A conference and research talk presentation slide deck (15 slides, 16:9 aspect ratio) is provided in:
+- Interactive HTML5 Presentation: [`slides/symsentinel_presentation.html`](slides/symsentinel_presentation.html)
+- Presentation PDF (16:9): [`slides/symsentinel_presentation.pdf`](slides/symsentinel_presentation.pdf)
+- LaTeX Beamer Deck: [`slides/symsentinel_presentation.tex`](slides/symsentinel_presentation.tex)
 
 ### Submission Manuscript & Documents (`paper/`)
 The complete, submission-ready scientific package formatted for *Quantum* is available in:
+- Master LaTeX Manuscript: [`paper/main.tex`](paper/main.tex)
 - Compiled Manuscript (PDF): [`paper/SymSentinel_Manuscript.pdf`](paper/SymSentinel_Manuscript.pdf)
+- Interactive HTML Manuscript: [`paper/SymSentinel_Manuscript.html`](paper/SymSentinel_Manuscript.html)
 - Official Cover Letter (PDF): [`paper/SymSentinel_Cover_Letter.pdf`](paper/SymSentinel_Cover_Letter.pdf)
 - Journal Scope Dossier (PDF): [`paper/SymSentinel_Journal_Targeting.pdf`](paper/SymSentinel_Journal_Targeting.pdf)
 - Complete Submission ZIP Bundle: [`dist/SymSentinel_Submission_Bundle.zip`](dist/SymSentinel_Submission_Bundle.zip)
-- Markdown Manuscript: [`paper/SymSentinel_Manuscript.md`](paper/SymSentinel_Manuscript.md)
-- LaTeX Manuscript: [`paper/SymSentinel_Manuscript.tex`](paper/SymSentinel_Manuscript.tex)
 
 ---
 
