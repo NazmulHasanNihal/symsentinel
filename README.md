@@ -6,7 +6,8 @@
 *Department of Computer Science and Engineering, College of Technology, National University, Gazipur, Bangladesh*
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.9%2B-brightgreen.svg)]()
+[![Python](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)]()
+[![CI](https://github.com/NazmulHasanNihal/symsentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/NazmulHasanNihal/symsentinel/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/Tests-11%2F11%20Passing-success.svg)]()
 
 `symsentinel` is an open-source Python library that transforms quantum circuit symmetries into real-time, zero-extra-shot hardware drift sensors. It drives an anytime-valid recalibration policy with certified false-alarm control (ARL), distribution-free risk bounds, and up to **80%+ cost reduction** over traditional periodic recalibration on cloud QPUs.

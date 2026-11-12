@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Pytest & Gate Verification
+    name: Test & Verify (${{ matrix.os }} - Py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -17,27 +17,26 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-        cache: 'pip'
 
-    - name: Install Dependencies
+    - name: Install Package & Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -e ".[dev]"
-        pip install matplotlib
 
-    - name: Run Pre-Registered Unit Tests (8/8 Gates)
+    - name: Run Pre-Registered Research Gate Unit Tests (11/11 Passing)
       run: |
-        python -m pytest -v tests/test_symsentinel.py
+        python -m pytest -v tests/
 
-    - name: Verify CLI Functionality
+    - name: Verify CLI Functionality & Packaging
       run: |
         python -m symsentinel.cli --help
-        python -m symsentinel.cli simulate --epochs 5 --shots 512
+        python -m symsentinel.cli simulate --regime D1 --epochs 5 --shots 512
         python -m symsentinel.cli bundle
 

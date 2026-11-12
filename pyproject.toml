@@ -7,9 +7,9 @@ name = "symsentinel"
 version = "0.1.0"
 description = "Anytime-Valid Recalibration of Symmetric Quantum Learners under Hardware Drift"
 authors = [
-    { name = "Md. Nazmul", email = "nazmul@nu.ac.bd" },
-    { name = "Musrat Jahan Gungun" },
-    { name = "Maheli Ahmed" }
+    { name = "Md. Nazmul", email = "nazmulhas36@gmail.com" },
+    { name = "Musrat Jahan Gungun", email = "gungunjahan84@gmail.com" },
+    { name = "Maheli Ahmed", email = "maheli.ahmed.cse.cot@gmail.com" }
 ]
 license = { text = "Apache-2.0" }
 readme = "README.md"
@@ -22,6 +22,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0.0",
+    "matplotlib>=3.5.0",
     "pymupdf>=1.22.0",
     "pymupdf4llm>=0.0.5",
 ]
