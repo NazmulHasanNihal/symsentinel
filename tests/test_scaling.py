@@ -58,3 +58,4 @@ def test_classical_syndrome_extraction_speed():
 
     assert syndromes.shape == (num_shots,)
     assert 0.0 <= violation_rate <= 1.0
+
